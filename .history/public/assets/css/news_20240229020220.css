@@ -1,0 +1,38 @@
+.news {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content:space-evenly ;
+    padding-top: 80px;
+}
+
+.news_card{
+    width: 30%;
+}
+
+.news p {
+    margin-top: 4px;
+}
+
+.news div img{
+    width: 300px;
+    height: 300px;
+    transition-property: height;
+
+}
+
+
+.news div {
+    width:30% ;
+    height: ;
+    transition-property: height;
+
+  /* position: absolute; */
+}
+
+@media screen and (max-width: 768px) {
+    .news {
+    flex-flow: row wrap ;
+    }
+}

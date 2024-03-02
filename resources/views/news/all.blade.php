@@ -42,7 +42,12 @@ Heros | all News
                 <p >{!! nl2br($new->content) !!}</p>
                 <a class="btn btn-primary" href="{{ route('news.show',$new->id) }}" role="button">Read</a>
                 <a class="btn btn-primary" href="{{ route('news.edit',$new->id) }}" role="button">Edit</a>
-                <a class="btn btn-danger" href="{{ route('news.delete',$new->id) }}" role="button">Delete</a>
+                <form action="{{ route('news.delete',$new->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    {{-- <a class="btn btn-danger" href="{{ route('news.delete',$new->id) }}" role="button">Delete</a> --}}
+                    <input type="submit" class="btn btn-danger" name="post-delete-form" value="Delete">
+                </form>
             </div>
         @endforeach
     @endif

@@ -1,16 +1,18 @@
 @extends('layout.nav')
 
 @section('title')
-Heros | show news
+    Heros | show news
 @endsection
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/show-post.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
-@endsection
+@show
 
 @section('admin-nav')
-    @parent
+    @if (auth()->user()->role == 'admin')
+        @parent
+    @endif
 @endsection
 
 @section('content')
@@ -52,27 +54,12 @@ Heros | show news
             </div>
             <!--/.Featured Image-->
 
-            <!-- CR(UD) Form -->
-            <div class="card my-4 mb-4">
-                <div class="row">
-                    <div class="col-md-6">
-                        <a href="edit.html"><button class="btn btn-primary" style="width:100%;">Edit</button></a>
-                    </div>
-                    <div class="col-md-6">
-                        <form action="" method="post">
-                            <input type="submit" style="width:100%;" class="btn btn-danger" name="post-delete-form"
-                                value="DELETE">
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!--/ CR(UD) Form -->
+            @yield('buttons')
+
             <!--Card-->
             <div class="card mb-4">
-
                 <!--Card content-->
                 <div class="card-body">{{ $news->content }}</div>
-
             </div>
             <!--/.Card-->
 

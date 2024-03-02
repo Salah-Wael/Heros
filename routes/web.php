@@ -58,7 +58,7 @@ Route::controller(NewsController::class)->group(function(){
     Route::get('/news/{id}', 'show')->name('news.show');
     Route::get('/news/{id}/edit', 'edit')->name('news.edit');
     Route::put('/news/{id}', 'update')->name('news.update');
-    Route::get('/news/{id}/delete', 'delete')->name('news.delete');
+    Route::delete('/news/{id}/delete', 'delete')->name('news.delete');
 });
 
 Route::get('/admin', function () {

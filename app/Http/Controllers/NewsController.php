@@ -46,7 +46,7 @@ class NewsController extends Controller
         $news->image = $imageName;
         $news->user_id = auth()->user()->id;
         $news->save();
-        
+
         $userRole = auth()->user()->role;
         switch ($userRole) {
             case auth()->user()->role == 'admin':
@@ -64,6 +64,19 @@ class NewsController extends Controller
 
     public function show(int $id) {
         $news = News::find($id);
+        $userRole = auth()->user()->role;
+        switch ($userRole) {
+            case auth()->user()->role == 'admin':
+                return view('news.show-to-admin&hero', compact('news'));
+                break;
+
+            case auth()->user()->role == 'user':
+                return view('news.show', compact('news'));
+                break;
+
+            default:
+                return view('home');
+        }
         return view('news.show',compact('news'));
     }
 

@@ -1,0 +1,3 @@
+@extends('news.show')
+
+

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class AuthController extends Controller
 {
-    public  function __construct(){
+    public  function __co(){
     $this->middleware('auth');
     }
 

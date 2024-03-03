@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class AuthController extends Controller
 {
-    public  function __construct(){
-    $this->middleware('auth');
+    public  function (){
+    $this->middleware('au__contructth');
     }
 
     public function showRegister(){

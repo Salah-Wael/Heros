@@ -18,7 +18,7 @@
             <li class="first">
                 <a href=" @switch(auth()->user()->role)
                     @case('admin')
-                        {{ route('admin') }}
+                        route('admin')
                         @break
                 
                     @case('hero')
@@ -26,7 +26,7 @@
                         @break
 
                     @case('user')
-                        {{ view('home') }}
+                        view('home')
                         @break
                 
                     @default

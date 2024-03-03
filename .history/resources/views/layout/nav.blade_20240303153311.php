@@ -16,22 +16,22 @@
     <nav>
         <ul class="nav-ul">
             <li class="first">
-                <a href=" @switch(auth()->user()->role)
-                    @case('admin')
-                        {{ route('admin') }}
-                        @break
+                <a href="{{ switch(auth()->user()->role)
+                    case('admin')
+                        route('admin')
+                        break
                 
-                    @case('hero')
-                        {{ route('hero') }}
-                        @break
+                    case('hero')
+                        route('hero')
+                        break
 
-                    @case('user')
-                        {{ view('home') }}
-                        @break
+                    case('user')
+                        view('/')
+                        break
                 
                     @default
                         
-                    @endswitch ">
+                    @endswitch }}">
 
                     <img src="{{  asset('/assets/images/nav.png') }}" alt="" />
                 </a>

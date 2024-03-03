@@ -24,7 +24,7 @@ use App\Http\Controllers\PaypalController;
 
 
 Route::controller(AuthController::class)->group(function(){
-    Route::get('/login','showLogin')->name('login');
+    Route::get('/login','showLogin')->name('l');
     Route::post('/login','login');
 
     Route::get('/register', 'showRegister');

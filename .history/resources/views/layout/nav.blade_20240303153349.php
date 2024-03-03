@@ -18,20 +18,20 @@
             <li class="first">
                 <a href=" @switch(auth()->user()->role)
                     @case('admin')
-                        {{ route('admin') }}
+                        route('admin')
                         @break
                 
                     @case('hero')
-                        {{ route('hero') }}
+                        route('hero')
                         @break
 
                     @case('user')
-                        {{ view('home') }}
+                        view('/')
                         @break
                 
                     @default
                         
-                    @endswitch ">
+                    @endswitch }}">
 
                     <img src="{{  asset('/assets/images/nav.png') }}" alt="" />
                 </a>

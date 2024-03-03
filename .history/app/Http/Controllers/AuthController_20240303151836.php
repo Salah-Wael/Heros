@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class AuthController extends Controller
 {
-    public  function __construct(){
+    public  function __contruct(){
     $this->middleware('auth');
     }
 
@@ -42,7 +42,7 @@ class AuthController extends Controller
     // $validatedData['password'] = bcrypt($validatedData['password']);
     // $user = User::create($validatedData);
 
-    return redirect()->route('login')->with("success","Registration Successfully");
+    return redirect("login")->with("success","Registration Successfully");
     }
 
     public function showLogin()
@@ -102,6 +102,6 @@ class AuthController extends Controller
         auth()->logout();
         session()->regenerateToken();
         session()->invalidate();
-        return  redirect()->route('login')->with("success","Logged out successfully!");
+        return  redirect('/login')->with("success","Logged out successfully!");
     }
 }

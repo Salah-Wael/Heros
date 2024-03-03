@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class AuthController extends Controller
 {
-    public  function __construct(){
+    public  function __contruct(){
     $this->middleware('auth');
     }
 
@@ -102,6 +102,6 @@ class AuthController extends Controller
         auth()->logout();
         session()->regenerateToken();
         session()->invalidate();
-        return  redirect()->route('login')->with("success","Logged out successfully!");
+        return  redirect('/login')->with("success","Logged out successfully!");
     }
 }

@@ -112,38 +112,37 @@ class NewsController extends Controller
         $news = DB::table('news')->where('id',$id)->first();
         if (auth()->user() &&  ((auth()->user()->role == 'admin') || ((auth()->user()->role == 'hero') && auth()->user()->id == $news->user_id))) {
             return  view("news.edit", compact('news'));
-        } else {
+        }else{
             return view('errors.error404');
         }
     }
 
     public  function update(Request $request,$id) {
         if (auth()->user() &&  ((auth()->user()->role == 'admin') || (auth()->user()->role == 'hero' && auth()->user()->id == $id))) {
-            DB::table('news')->where('id', $id)->update([
-                "title" => $request->title,
-                "content" => $request->content,
-                "image" => $request->image
-            ]);
-            return redirect()->route('news.show', $id)->with('success', 'News updated successfully.');
-        } else {
-            return view('errors.error404');
-        }
+        $news= DB::table('news')->where('id',$id)->update([
+            "title"=>$request->title,
+            "content"=>$request->content,
+            "image"=>$request->image
+        ]);
+
+        return redirect()->route('news.show',$id)->with('success','News updated successfully.');
+    }
     }
 
     public  function delete($id) {
-        DB::table('news')->where('id', $id)->delete();
-        $userRole = auth()->user()->role;
-        switch ($userRole) {
-            case auth()->user()->role == 'admin':
-                return redirect()->route('news.all')->with('success', "Chosen news deleted successfully");
-                break;
+        DB::table('news')->where('id',$id)->delete();
+            $userRole = auth()->user()->role;
+            switch ($userRole) {
+                case auth()->user()->role == 'admin':
+                    return redirect()->route('news.all')->with('success', "Chosen news deleted successfully");
+                    break;
 
-            case auth()->user()->role == 'hero':
-                return redirect()->route('news.index')->with('success', "Chosen news deleted successfullyy");
-                break;
+                case auth()->user()->role == 'hero':
+                    return redirect()->route('news.index')->with('success', "Chosen news deleted successfullyy");
+                    break;
 
-            default:
-                return view('errors.error404');
+                default:
+                    return view('errors.error404');
             
         }
 

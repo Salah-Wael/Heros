@@ -16,26 +16,22 @@
     <nav>
         <ul class="nav-ul">
             <li class="first">
-                <a href=" @switch(auth()->user()->role)
-                    @case('admin')
-                        {{ route('admin') }}
-                        @break
-                
-                    @case('hero')
-                        {{ route('hero') }}
-                        @break
+                <a href="{{ @switch(auth()->user()->role)
+            @case('admin')
+                route('admin')
+                @break
+        
+            @case('hero')
+                route('admin')
+                @break
 
-                    @case('user')
-                        {{ view('home') }}
-                        @break
+            @case('user')
+                @break
+        
+            @default
                 
-                    @default
-                        
-                    @endswitch ">
-
-                    <img src="{{  asset('/assets/images/nav.png') }}" alt="" />
-                </a>
-            </li>
+            @endswitch }}">
+            <img src="{{  asset('/assets/images/nav.png') }}" alt="" /></a></li>
             <li class="second"><span>Welcome </span><a class="second odd" href="#">{{auth()->user()->firstName . ' ' . auth()->user()->lastName }}</a></li>
             <form class="d-flex" role="search">
                 @csrf

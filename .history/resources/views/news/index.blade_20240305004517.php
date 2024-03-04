@@ -43,6 +43,7 @@ Heros | News
                 <br>
                 <img src="{{ asset("assets/images/news/".$new->image) }}" alt="{{ $new->title }}">
 
+                
                 @if (strlen($new->content) > 30)
                     <p>{{ substr($new->content, 0, 30) }}...</p>
                 @endif

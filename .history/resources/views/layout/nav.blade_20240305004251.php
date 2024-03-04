@@ -35,7 +35,7 @@
                 @case('admin')
                     <li class="first">
                         <a href=" {{ route('admin') }} ">
-                            <img src="{{  asset('/assets/images/nav.png') }}" alt="Nav Logo" />
+                            <img src="{{  asset('/assets/images/nav.png') }}" alt="" />
                         </a>
                     </li>
                     @break
@@ -43,15 +43,15 @@
                 @case('hero')
                     <li class="first">
                         <a href=" {{ route('hero') }} ">
-                            <img src="{{  asset('/assets/images/nav.png') }}" alt="Nav Logo" />
+                            <img src="{{  asset('/assets/images/nav.png') }}" alt="" />
                         </a>
                     </li>
                     @break
 
                 @case('user')
                     <li class="first">
-                        <a href=" {{ route('user') }} ">
-                        <img src="{{  asset('/assets/images/nav.png') }}" alt="Nav Logo" />
+                        <a href=" {{ route('hero') }} ">
+                            <img src="{{  asset('/assets/images/nav.png') }}" alt="" />
                         </a>
                     </li>
                     @break

@@ -53,7 +53,7 @@ Route::controller(HeroController::class)->group(function(){
 
 Route::get('/',function(){
 return view ('home');
-})->name('user');
+})->name('');
 
 Route::get('support',function(){
     return  view ('support');

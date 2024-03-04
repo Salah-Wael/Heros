@@ -46,7 +46,7 @@
         
         <label for="image" class="custom-file-upload">
             <span>Click if you need to apdate the image</span>
-            <input type="file" name="image" id="image" accept=".jpeg, .jpg, .png, .jfif, .svg">
+            <input type="file" name="image" id="image" accept=".jpeg, .jpg, .png, .jfif, .svg"> --}}
         </label>
 
         <br>

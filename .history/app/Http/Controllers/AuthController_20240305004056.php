@@ -75,6 +75,7 @@ class AuthController extends Controller
 
                 case auth()->user()->role == 'user':
                     return  redirect()->route('user');
+                // dd("smsm");
                     break;
 
                 default:

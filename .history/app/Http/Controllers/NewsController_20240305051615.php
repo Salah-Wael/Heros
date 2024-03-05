@@ -20,7 +20,7 @@ class NewsController extends Controller
     public function index() {
         $news = DB::table('news')
         ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.*', 'users.firstName','users.lastName', 'users.role')
+        ->select('news.*', 'users.firstName', 'users.lastName')
         ->orderBy('news.created_at', 'desc')
         ->get();
 
@@ -52,9 +52,8 @@ class NewsController extends Controller
     }
     public  function edit($id)
     {
-        $news = DB::table('news')->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.*', 'users.role')->where('news.id', $id)->first();
-        if (auth()->user() &&  (((auth()->user()->role == 'admin') && $news->role != 'hero') || ((auth()->user()->role == 'hero') && auth()->user()->id == $news->user_id))) {
+        $news = DB::table('news')->where('id', $id)->first();
+        if (auth()->user() &&  ((auth()->user()->role == 'admin') || ((auth()->user()->role == 'hero') && auth()->user()->id == $news->user_id))) {
             return  view("news.edit", compact('news'));
         } else {
             return view('errors.error404');
@@ -100,6 +99,40 @@ class NewsController extends Controller
         }
     }
 
+    // public  function update(Request $request,$id) {
+    //     $news = DB::table('news')->where('id', $id)->first();
+
+    //     if (auth()->user() &&  ((auth()->user()->role == 'admin') || (auth()->user()->role == 'hero' && auth()->user()->id == $news->user_id))) {
+    //         $data= $request->validate([
+    //             'title' => 'required|string',
+    //             'content' => 'required|string',
+    //             'image' => 'image|mimes:jpeg,jpg,png,jfif,svg|max:2048'
+    //             ],
+    //             #errors
+    //             [
+    //                 'image' . 'image' => "The image field must be an image.",
+    //                 'image' . 'mimes' => "The image field must be an image with extention jpeg, jpg, png, jfif, or svg.",
+    //             ]
+    //         );
+
+    //         $news->title = $data['title'];
+    //         $news->content = $data['content'];
+
+    //         if ($request->hasfile('image')) {
+    //             File::delete($news->image);
+    //             $image = $request->file('image');
+    //             $imageName = uniqid() . $image->getClientOriginalName();
+    //             // $destination = public_path('assets/images/news/') . $imageName;
+    //             $image->move(public_path('assets/images/news'), $imageName);
+    //         }
+
+    //         $news->update();
+
+    //         return redirect()->route('news.show', $id)->with('success', 'News updated successfully.');
+    //     } else {
+    //         return view('errors.error404');
+    //     }
+    // }
 
     public function update(Request $request, $id)
     {
@@ -115,11 +148,13 @@ class NewsController extends Controller
                 'image.mimes' => "The image field must be an image with extension jpeg, jpg, png, jfif, or svg.",
             ]);
 
-        if($news->title != $request->title|| $news->content != $request->content){
-            $news->updated_at = now();
-        }
+            if($news->title){
+
+            }
 
             $updateData = [
+                
+                // 'updated_at' => now(),
                 'title' => $data['title'],
                 'content' => $data['content'],
             ];

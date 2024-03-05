@@ -33,7 +33,7 @@ Heros | Create News
                     {{ $message }}
                 @enderror
             </div>
-        @endif
+            @endif
 
         <label for="content">Content</label>
         <textarea id="content" name="content" rows="4" >{{ old('content') }}</textarea>
@@ -47,9 +47,10 @@ Heros | Create News
 
 
         <div class="form-group">
+
             <label for="image" class="custom-file-upload">
                 <span>Click to choose an image</span>
-                <input type="file" name="image" id="image" accept=".jpeg, .jpg, .png, .jfif, .svg" required>
+            <input type="file" name="image" id="image" accept=".jpeg, .jpg, .png, .jfif, .svg" required>
             </label>
         </div>
 
@@ -64,6 +65,29 @@ Heros | Create News
         <input type="submit" value="Create">
         <input type="reset" value="Reset">
 
+    {{-- <script type="text/javascript">
+        Dropzone.options.dropzone =
+        {
+            paramName: "image",
+            maxFilesize: 5,
+            maxFile: 1,
+            dictDefaultMessage: "Drop your image here or click to upload",
+            // renameFile: function(image) {
+            //     var dt= new Date();
+            //     var time= dt.getTime();
+            //     return time + image.name;
+            // },
+            acceptedFiles: ".jpeg,.jpg,.png,.jfif,.svg",
+            addRemoveLinks: true,
+            timeout: 5000,
+            success: function(file,response){
+            console.log(response.success);
+            },
+            error: function(file,response){
+            return false;
+            }
+        };
+    </script> --}}
     </form>
 @endsection
 

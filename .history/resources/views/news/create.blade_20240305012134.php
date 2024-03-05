@@ -33,7 +33,7 @@ Heros | Create News
                     {{ $message }}
                 @enderror
             </div>
-        @endif
+            @endif
 
         <label for="content">Content</label>
         <textarea id="content" name="content" rows="4" >{{ old('content') }}</textarea>

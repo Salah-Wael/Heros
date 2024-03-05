@@ -45,16 +45,13 @@ Heros | all News
                 
                 <a class="btn btn-primary" href="{{ route('news.show',$new->id) }}" role="button">Read</a>
 
-                @if (((auth()->user()->role == 'admin') && $new->role != 'hero')|| ((auth()->user()->role == 'hero') && auth()->user()->id == $new->user_id))
-                    <a class="btn btn-primary" href="{{ route('news.edit',$new->id) }}" role="button">Edit</a>
-                @endif
-
-                @if ((auth()->user()->role == 'admin') || ((auth()->user()->role == 'hero') && auth()->user()->id == $new->user_id))
-                    <form action="{{ route('news.delete',$new->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" class="btn btn-danger" name="post-delete-form" value="Delete">
-                    </form>
+                @if ((auth()->user()->role == 'admin') &&|| ((auth()->user()->role == 'hero') && auth()->user()->id == $new->user_id))
+                <a class="btn btn-primary" href="{{ route('news.edit',$new->id) }}" role="button">Edit</a>
+                <form action="{{ route('news.delete',$new->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" class="btn btn-danger" name="post-delete-form" value="Delete">
+                </form>
                 @endif
             </div>
         @endforeach

@@ -63,7 +63,9 @@
     @endif
     
     <input type="submit" value="Edit">
-    <a href="{{ route('news.all') }}" class="button">Cancel</a>
+    {{-- <input type="button" href="{{ redirect()->route('news.all') }}" value="Cancel"> --}}
+    <button onclick="window.location.href='{{ redirect()->route('news.all') }}'">Cancel</button>
+    <a href="{{ redirect()->route('news.all') }}" class="button">Cancel</a>
 
 
         

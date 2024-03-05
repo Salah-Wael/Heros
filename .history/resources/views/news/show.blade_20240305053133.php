@@ -24,6 +24,7 @@
             {{ session('success')  }}
         </div>
         {!! '<br><br>' !!}
+    @el
     @endif
 
     <section class="mt-4">

@@ -33,7 +33,7 @@ Heros | Create News
                     {{ $message }}
                 @enderror
             </div>
-        @endif
+            @endif
 
         <label for="content">Content</label>
         <textarea id="content" name="content" rows="4" >{{ old('content') }}</textarea>
@@ -47,9 +47,10 @@ Heros | Create News
 
 
         <div class="form-group">
+
             <label for="image" class="custom-file-upload">
                 <span>Click to choose an image</span>
-                <input type="file" name="image" id="image" accept=".jpeg, .jpg, .png, .jfif, .svg" required>
+            <input type="file" name="image" id="image" accept=".jpeg, .jpg, .png, .jfif, .svg" required>
             </label>
         </div>
 

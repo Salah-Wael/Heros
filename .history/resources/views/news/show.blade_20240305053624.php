@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
 @show
 
-{{-- @section('admin-nav')
+@section('admin-nav')
     @if (auth()->user()->role == 'admin')
         @parent
     @endif
-@endsection --}}
+@endsection
 
 @section('content')
 

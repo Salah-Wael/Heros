@@ -49,7 +49,7 @@ Heros | all News
                     <a class="btn btn-primary" href="{{ route('news.edit',$new->id) }}" role="button">Edit</a>
                 @endif
 
-                @if ((auth()->user()->role == 'admin') || ((auth()->user()->role == 'hero') && auth()->user()->id == $new->user_id))
+                @if ((auth()->user()->role == 'admin') || ((auth()->user()->role == 'hero') && auth()->user()->id == $new->user_id)
                     <form action="{{ route('news.delete',$new->id) }}" method="post">
                         @csrf
                         @method('DELETE')

@@ -52,9 +52,8 @@ class NewsController extends Controller
     }
     public  function edit($id)
     {
-        $news = DB::table('news')->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.*', 'users.role')->where('news.id', $id)->first();
-        if (auth()->user() &&  (((auth()->user()->role == 'admin') && $news->role != 'hero') || ((auth()->user()->role == 'hero') && auth()->user()->id == $news->user_id))) {
+        $news = DB::table('news')->where('id', $id)->first();
+        if (auth()->user() &&  ((auth()->user()->role == 'admin') || ((auth()->user()->role == 'hero') && auth()->user()->id == $news->user_id))) {
             return  view("news.edit", compact('news'));
         } else {
             return view('errors.error404');

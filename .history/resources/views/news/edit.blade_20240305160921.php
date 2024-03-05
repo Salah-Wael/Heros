@@ -61,6 +61,8 @@
     <input type="submit" value="Edit">
     <a href="{{ route('news.all') }}" class="button">Cancel</a>
 
+
+
 </form>
 @endsection
 

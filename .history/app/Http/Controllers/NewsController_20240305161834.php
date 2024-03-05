@@ -20,7 +20,8 @@ class NewsController extends Controller
     public function index() {
         $news = DB::table('news')
         ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.*', 'users.firstName','users.lastName', 'users.role')
+        ->select('news.*', $news = DB::table('news')->join('users', 'news.user_id', '=', 'users.id')
+            ->select('news.*', 'users.role')->where('news.id', $id)->first();, 'users.role')
         ->orderBy('news.created_at', 'desc')
         ->get();
 
@@ -143,12 +144,11 @@ class NewsController extends Controller
 
 
     public function show(int $id) {
-        $news = News::find($id)
+        $news = DB::table('news')
         ->join('users', 'news.user_id', '=', 'users.id')
-        ->select('news.*', 'users.firstName', 'users.lastName', 'users.role')
-        ->where('news.id', $id)
-        ->first();
-
+        ->select('news.*', 'users.role')
+        ->where('news.id', $id)->first();
+        // $news = News::find($id);
         $userRole = auth()->user()->role;
         switch ($userRole) {
             case auth()->user()->role == 'admin':

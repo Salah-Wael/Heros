@@ -36,7 +36,7 @@
                 <strong>
                     {{ 'By ' }}
                     <a href="/user">
-                        {{ $news->user->firstName.' '.$news->user->lastName }}
+                        {{ $news->user()->firstName.' '.$news->user()->lastName }}
                     </a>
                 </strong>
                 @if ($news->created_at == $news->updated_at)

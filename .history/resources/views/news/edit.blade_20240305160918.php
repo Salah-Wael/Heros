@@ -39,6 +39,7 @@
     @endif
 
     <div class="form-group">
+        
 
         <label for="image" class="custom-file-upload">
             <span>Click if you need to apdate the image</span>
@@ -60,6 +61,8 @@
 
     <input type="submit" value="Edit">
     <a href="{{ route('news.all') }}" class="button">Cancel</a>
+
+
 
 </form>
 @endsection

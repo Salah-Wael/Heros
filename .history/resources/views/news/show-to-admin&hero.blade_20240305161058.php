@@ -8,11 +8,10 @@
 @section('buttons')
     <div class="card my-4 mb-4">
         <div class="row">
-            @if (((auth()->user()->role == 'admin') && $news->role != 'hero')|| ((auth()->user()->role == 'hero') && auth()->user()->id == $news->user_id))
-                <div class="col-md-6">
-                    <a href="{{ route('news.edit',$news->id) }}"><button class="btn btn-primary" style="width:100%;">Edit</button></a>
-                </div>
-            @endif
+            @if (((auth()->user()->role == 'admin') && $new->role != 'hero')|| ((auth()->user()->role == 'hero') && auth()->user()->id == $new->user_id))
+            <div class="col-md-6">
+                <a href="{{ route('news.edit',$news->id) }}"><button class="btn btn-primary" style="width:100%;">Edit</button></a>
+            </div>
             <div class="col-md-6">
                 <form action="{{ route('news.delete',$news->id) }}" method="post">
                     @csrf

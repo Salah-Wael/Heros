@@ -8,7 +8,8 @@ use Srmklive\PayPal\Services\PayPalRequestException;
 
 class PaymentController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     public function handlePayment(Request $request)

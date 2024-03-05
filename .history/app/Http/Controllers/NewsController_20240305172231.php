@@ -189,5 +189,5 @@ class NewsController extends Controller{
         return view('errors.error404');
     }
 }
-//       C             R              U            D        , RESTful
+//   C           RUD, RESTful
 // CREATE, STORE// SHOW, INDEX// EDIT, UPDATE // DESTROY

@@ -23,44 +23,6 @@ class NewsController extends Controller{
             return view('errors.error404');
         }
     }
-    public function store(Request $request) {
-        $data= $request->validate([
-                'title' => 'required|string',
-                'content' => 'required|string',
-                'image' => 'required|image|mimes:jpeg,jpg,png,jfif,svg|max:2048'
-            ],
-            #errors
-            [
-                'image' . 'image' => "The image field must be an image.",
-                'image' . 'mimes' => "The image field must be an image with extention jpeg, jpg, png, jfif, or svg.",
-        ]);
-
-        $news = new News();
-
-        $image = $request->file('image');
-        $imageName= uniqid().$image->getClientOriginalName();
-        $image->move(public_path('assets/images/news'),$imageName);
-        $news->image = $imageName;
-
-        $news->title = $data['title'];
-        $news->content = $data['content'];
-        $news->user_id = auth()->user()->id;
-        $news->save();
-
-        $userRole = auth()->user()->role;
-        switch ($userRole) {
-            case auth()->user()->role == 'admin':
-                return redirect()->route('news.all')->with('success', "News created successfully.");
-                break;
-                
-            case auth()->user()->role == 'hero':
-                return redirect()->route('news.index')->with('success', "News created successfully.");
-                break;
-
-                default:
-                return view('home');
-        }
-    }
     public  function edit($id)
     {
         $news = DB::table('news')->join('users', 'news.user_id', '=', 'users.id')
@@ -116,6 +78,47 @@ class NewsController extends Controller{
         }
     }
     
+    public function store(Request $request) {
+        $data= $request->validate([
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,jpg,png,jfif,svg|max:2048'
+            ],
+            #errors
+            [
+                'image' . 'image' => "The image field must be an image.",
+                'image' . 'mimes' => "The image field must be an image with extention jpeg, jpg, png, jfif, or svg.",
+        ]);
+
+        $news = new News();
+
+        $image = $request->file('image');
+        $imageName= uniqid().$image->getClientOriginalName();
+        $image->move(public_path('assets/images/news'),$imageName);
+        $news->image = $imageName;
+
+        $news->title = $data['title'];
+        $news->content = $data['content'];
+        $news->user_id = auth()->user()->id;
+        $news->save();
+
+        $userRole = auth()->user()->role;
+        switch ($userRole) {
+            case auth()->user()->role == 'admin':
+                return redirect()->route('news.all')->with('success', "News created successfully.");
+                break;
+                
+            case auth()->user()->role == 'hero':
+                return redirect()->route('news.index')->with('success', "News created successfully.");
+                break;
+
+                default:
+                return view('home');
+            }
+        }
+        
+        
+        
         
     public function index() {
         $news = DB::table('news')
@@ -168,6 +171,8 @@ class NewsController extends Controller{
         }
     }
 
+    
+
     public  function delete($id) {
         $news = News::find($id);
         if(auth()->user() && ((auth()->user()->role == 'admin') || (auth()->user()->role == 'hero' && auth()->user()->id == $news->user_id))) {
@@ -189,5 +194,3 @@ class NewsController extends Controller{
         return view('errors.error404');
     }
 }
-//       C             R              U            D        , RESTful
-// CREATE, STORE// SHOW, INDEX// EDIT, UPDATE // DESTROY

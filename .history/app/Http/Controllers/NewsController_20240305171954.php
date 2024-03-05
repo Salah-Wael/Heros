@@ -25,9 +25,9 @@ class NewsController extends Controller{
     }
     public function store(Request $request) {
         $data= $request->validate([
-                'title' => 'required|string',
-                'content' => 'required|string',
-                'image' => 'required|image|mimes:jpeg,jpg,png,jfif,svg|max:2048'
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,jpg,png,jfif,svg|max:2048'
             ],
             #errors
             [
@@ -189,5 +189,3 @@ class NewsController extends Controller{
         return view('errors.error404');
     }
 }
-//       C             R              U            D        , RESTful
-// CREATE, STORE// SHOW, INDEX// EDIT, UPDATE // DESTROY

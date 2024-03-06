@@ -31,11 +31,11 @@
                         </a>
                     </li>
                     @break
-
+                    
                 @case('user')
                     <li class="first">
                         <a href=" {{ route('user') }} ">
-                            <img src="{{  asset('/assets/images/nav.png') }}" alt="Nav Logo" />
+                        <img src="{{  asset('/assets/images/nav.png') }}" alt="Nav Logo" />
                         </a>
                     </li>
                     @break

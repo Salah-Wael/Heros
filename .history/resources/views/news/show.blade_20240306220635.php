@@ -27,7 +27,6 @@
         <!--Grid column-->
         <div class="col-md-8 mb-4">
             <h3 class="my-2">{{ $news->title }}</h3>
-
             <small id="article-meta">
                 <strong>
                     {{ 'By ' }}
@@ -43,17 +42,18 @@
 
             </small>
 
+
             <!--Featured Image-->
             <div class="card my-4 mb-4">
                 <img src="{{ asset("assets/images/news/".$news->image) }}">
             </div>
             <!--/.Featured Image-->
-            
+
+            @yield('buttons')
+
             <div class="card mb-4">
                 <div class="card-body">{!! nl2br($news->content) !!}</div>
             </div>
-            
-            @yield('buttons')
 
         </div>
         <!--Grid column-->

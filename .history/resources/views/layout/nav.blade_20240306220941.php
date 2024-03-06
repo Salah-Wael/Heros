@@ -35,7 +35,7 @@
                 @case('user')
                     <li class="first">
                         <a href=" {{ route('user') }} ">
-                            <img src="{{  asset('/assets/images/nav.png') }}" alt="Nav Logo" />
+                        <img src="{{  asset('/assets/images/nav.png') }}" alt="Nav Logo" />
                         </a>
                     </li>
                     @break
@@ -43,7 +43,7 @@
                 @default
 
             @endswitch
-
+                    
                 <li class="second"><span>Welcome </span><a class="second odd" href="#">{{auth()->user()->firstName . ' ' . auth()->user()->lastName }}</a></li>
                 <form class="d-flex" action="{{ route('news.index') }}" role="search">
                     @csrf

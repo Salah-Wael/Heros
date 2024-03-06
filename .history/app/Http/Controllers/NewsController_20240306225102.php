@@ -119,7 +119,7 @@ class NewsController extends Controller{
 
     public function index(Request $request)
     {
-
+        
         // if ($request->has('search')) {
         //     $search = $request->get('search');
         //     $news = News::whereHas("user", function ($query) use ($search) {
@@ -132,21 +132,6 @@ class NewsController extends Controller{
         //     ->orderBy('news.created_at', 'desc')
         //     ->get();
         // }
-        if ($request->has('search')) {
-            $search = $request->get('search');
-            $news = News::whereHas("user", function ($query) use ($search, $request) {
-                $query->where("firstName", "LIKE", "%$search%")
-                    ->when($request->has('search') && $request->get('search') == 'hero', function ($query) use ($search) {
-                        $query->orWhere("role", "LIKE", "%$search%");
-                });
-            })
-            ->orWhere("title", "LIKE", "%$search%")
-            ->orWhere("content", "LIKE", "%$search%")
-            ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.*', 'users.firstName', 'users.lastName', 'users.role')
-            ->orderBy('news.created_at', 'desc')
-            ->get();
-        }
         else{
             $news = DB::table('news')
             ->join('users', 'news.user_id', '=', 'users.id')

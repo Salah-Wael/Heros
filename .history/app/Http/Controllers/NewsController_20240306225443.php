@@ -137,7 +137,7 @@ class NewsController extends Controller{
             $news = News::whereHas("user", function ($query) use ($search, $request) {
                 $query->where("firstName", "LIKE", "%$search%")
                     ->when($request->has('search') && $request->get('search') == 'hero', function ($query) use ($search) {
-                        $query->orWhere("role", "LIKE", "%$search%");
+                    $query->orWhere("role", "LIKE", "%$search%");
                 });
             })
             ->orWhere("title", "LIKE", "%$search%")
@@ -147,6 +147,7 @@ class NewsController extends Controller{
             ->orderBy('news.created_at', 'desc')
             ->get();
         }
+
         else{
             $news = DB::table('news')
             ->join('users', 'news.user_id', '=', 'users.id')

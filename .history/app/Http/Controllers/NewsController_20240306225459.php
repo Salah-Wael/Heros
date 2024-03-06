@@ -147,6 +147,7 @@ class NewsController extends Controller{
             ->orderBy('news.created_at', 'desc')
             ->get();
         }
+
         else{
             $news = DB::table('news')
             ->join('users', 'news.user_id', '=', 'users.id')

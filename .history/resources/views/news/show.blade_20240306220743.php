@@ -48,13 +48,14 @@
                 <img src="{{ asset("assets/images/news/".$news->image) }}">
             </div>
             <!--/.Featured Image-->
+
             
             <div class="card mb-4">
                 <div class="card-body">{!! nl2br($news->content) !!}</div>
             </div>
             
             @yield('buttons')
-
+            
         </div>
         <!--Grid column-->
 

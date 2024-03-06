@@ -1,7 +1,7 @@
 @extends('news.show')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/show-post.css') }}"> --}}
 @endsection
 
@@ -18,7 +18,8 @@
                 <form action="{{ route('news.delete',$news->id) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <input type="submit" style="width:100%;" class="btn btn-danger" name="post-delete-form" value="DELETE">
+                    <input type="submit" style="width:100%;" class="btn btn-danger" name="post-delete-form"
+                        value="DELETE">
                 </form>
             </div>
         </div>

@@ -7,9 +7,15 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/show-post.css') }}">
-@endsection
+@show
+
+{{-- @section('admin-nav')
+    @if (auth()->user()->role == 'admin')
+        @parent
+    @endif
+@endsection --}}
 
 @section('content')
 

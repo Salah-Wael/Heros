@@ -61,9 +61,9 @@
             @endswitch
 
                 <li class="second"><span>Welcome </span><a class="second odd" href="#">{{auth()->user()->firstName . ' ' . auth()->user()->lastName }}</a></li>
-                <form class="d-flex" action="{{ route('news.index') }}" role="search">
+                <form class="d-flex" role="search">
                     @csrf
-                    <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" name placeholder="Search" aria-label="Search">
                     <button class="nav-btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <li><a class="third even" href="{{ route('support') }}">Support</a></li>

@@ -41,8 +41,6 @@ Heros | all News
                 
                 @if (strlen($new->content) > 30)
                     <p>{{ substr($new->content, 0, 30) }}...</p>
-                @else
-                    <p >{{ substr($new->content,0,30) }}</p>
                 @endif
                 
                 <a class="btn btn-primary" href="{{ route('news.show',$new->id) }}" role="button">Read</a>

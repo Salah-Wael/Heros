@@ -115,31 +115,18 @@ class NewsController extends Controller{
             return view('errors.error404');
         }
     }
-
-
-    public function index(Request $request)
-    {
+    
         
-        if ($request->has('search')) {
-            $search = $request->get('search');
-            $news = News::whereHas("user", function ($query) use ($search) {
-                $query->where("firstName", "LIKE", "%$search%")
-                ->orWhere("role", "LIKE", "%$search%");
-                
-            })->orWhere("title", "LIKE", "%$search%")
-            ->orWhere("content", "LIKE", "%$search%")
-            ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.*', 'users.firstName', 'users.lastName', 'users.role')
-            ->orderBy('news.created_at', 'desc')
-            ->get();
-        }else{
-            $news = DB::table('news')
-            ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.*', 'users.firstName','users.lastName', 'users.role')
-            ->orderBy('news.created_at', 'desc')
-            ->get();
+    public function index(Request $request) {
+        if($request->has('search')){
+            $$request->get('search')
         }
 
+        $news = DB::table('news')
+        ->join('users', 'news.user_id', '=', 'users.id')
+        ->select('news.*', 'users.firstName','users.lastName', 'users.role')
+        ->orderBy('news.created_at', 'desc')
+        ->get();
 
         $userRole = auth()->user()->role;
         switch ($userRole) {

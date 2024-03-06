@@ -119,27 +119,16 @@ class NewsController extends Controller{
 
     public function index(Request $request)
     {
-        
         if ($request->has('search')) {
             $search = $request->get('search');
-            $news = News::whereHas("user", function ($query) use ($search) {
-                $query->where("firstName", "LIKE", "%$search%")
-                ->orWhere("role", "LIKE", "%$search%");
-                
-            })->orWhere("title", "LIKE", "%$search%")
-            ->orWhere("content", "LIKE", "%$search%")
-            ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.*', 'users.firstName', 'users.lastName', 'users.role')
-            ->orderBy('news.created_at', 'desc')
-            ->get();
-        }else{
-            $news = DB::table('news')
-            ->join('users', 'news.user_id', '=', 'users.id')
-            ->select('news.*', 'users.firstName','users.lastName', 'users.role')
-            ->orderBy('news.created_at', 'desc')
-            ->get();
+            $news = News::where('title');
         }
 
+        $news = DB::table('news')
+        ->join('users', 'news.user_id', '=', 'users.id')
+        ->select('news.*', 'users.firstName','users.lastName', 'users.role')
+        ->orderBy('news.created_at', 'desc')
+        ->get();
 
         $userRole = auth()->user()->role;
         switch ($userRole) {

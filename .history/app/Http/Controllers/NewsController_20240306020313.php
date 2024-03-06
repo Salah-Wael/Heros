@@ -125,7 +125,6 @@ class NewsController extends Controller{
             $news = News::whereHas("user", function ($query) use ($search) {
                 $query->where("firstName", "LIKE", "%$search%")
                 ->orWhere("role", "LIKE", "%$search%");
-                
             })->orWhere("title", "LIKE", "%$search%")
             ->orWhere("content", "LIKE", "%$search%")
             ->join('users', 'news.user_id', '=', 'users.id')

@@ -52,15 +52,15 @@ Route::controller(HeroController::class)->group(function(){
 
 Route::get('/',function(){
 return view ('home');
-})->middleware('auth')->name('user');
+})->name('user');
 
 Route::get('support',function(){
     return  view ('support');
-})->middleware('auth')->name('support');
+})->name('support');
 
 Route::get('about',function(){
     return  view ('about');
-})->middleware('auth')->name('about');
+})->name('about');
 
 Route::controller(PaypalController::class)->group(function(){
     Route::get('/payment', 'payment')->name('payment');

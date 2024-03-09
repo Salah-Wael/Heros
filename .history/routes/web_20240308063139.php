@@ -46,21 +46,22 @@ if(auth()->user()->role == 'admin'){
 
 Route::controller(HeroController::class)->group(function(){
     Route::get('/hero','heroHome')->name('hero');
-    Route::get('/profile/{id}', 'heroProfile')->name('hero-profile');
+    Route::get('/
+    ', 'heroProfile')->name('hero-profile');
     Route::get('/profile/{id}/edit', 'editHeroProfile')->name('edit-hero-profile');
 });
 
 Route::get('/',function(){
 return view ('home');
-})->middleware('auth')->name('user');
+})->name('user');
 
 Route::get('support',function(){
     return  view ('support');
-})->middleware('auth')->name('support');
+})->name('support');
 
 Route::get('about',function(){
     return  view ('about');
-})->middleware('auth')->name('about');
+})->name('about');
 
 Route::controller(PaypalController::class)->group(function(){
     Route::get('/payment', 'payment')->name('payment');

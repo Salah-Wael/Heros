@@ -60,7 +60,7 @@ Route::get('support',function(){
 
 Route::get('about',function(){
     return  view ('about');
-})->middleware('auth')->name('about');
+})->name('about');
 
 Route::controller(PaypalController::class)->group(function(){
     Route::get('/payment', 'payment')->name('payment');

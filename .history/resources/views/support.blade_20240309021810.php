@@ -8,6 +8,12 @@ Heros | support
     <link rel="stylesheet" href="{{ asset('assets/css/support.css') }}">
 @endsection
 
+{{-- @section('admin-nav')
+    @if (auth()->user()->role == 'admin')
+        @parent
+    @endif
+@endsection --}}
+
 @section('content')
     @if (session('cancel'))
         <div style="height:40px;color:black;background-image: linear-gradient(to right,#DF63FF,#82E9EF);display: flex;align-items: center;justify-content: center;">
@@ -42,6 +48,9 @@ Heros | support
                     </td>
                 </tr>
             </table>
+
+
+
         </div>
     </div>
 @endsection

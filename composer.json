@@ -10,7 +10,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.4",
+        "livewire/livewire": "*",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/ignition": "^1.12",
         "srmklive/paypal": "~1.0"
     },

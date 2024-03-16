@@ -2,7 +2,7 @@
 
 use App\Livewire\Chat\Chat;
 use App\Livewire\Chat\Index;
-use App\Livewire\Users;
+use App\\Livewire\Users;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroController;

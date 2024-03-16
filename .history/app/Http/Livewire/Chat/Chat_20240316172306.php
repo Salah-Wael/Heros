@@ -1,28 +1,29 @@
 <?php
 
-namespace App\Livewire\Chat;
+namespace App\Http\Livewire\Chat;
 
-use Livewire\Component;
 use App\Models\Conversation;
 use App\Models\Message;
+use Livewire\Component;
 
 class Chat extends Component
 {
+
     public $query;
     public $selectedConversation;
 
     public function mount()
     {
 
-        $this->selectedConversation = Conversation::findOrFail($this->query);
-        /// dd($selectedConversation);
+        $this->selectedConversation= Conversation::findOrFail($this->query);
+       /// dd($selectedConversation);
 
 
-        #mark message belogning to receiver as read
-        Message::where('conversation_id', $this->selectedConversation->id)
+    #mark message belogning to receiver as read
+    Message::where('conversation_id',$this->selectedConversation->id)
             ->where('receiver_id', auth()->user()->id)
             ->whereNull('read_at')
-            ->update(['read_at' => now()]);
+            ->update(['read_at'=>now()]);
     }
 
 

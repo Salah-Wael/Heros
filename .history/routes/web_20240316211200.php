@@ -1,8 +1,8 @@
 <?php
 
-use App\Livewire\Chat\Chat;
-use App\Livewire\Chat\Index;
-use App\Livewire\Users;
+use App\Http\Livewire\Chat\Chat;
+use App\Http\Livewire\Chat\Index;
+use App\Http\Livewire\Users;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroController;

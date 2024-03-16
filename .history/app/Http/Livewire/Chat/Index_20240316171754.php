@@ -7,7 +7,7 @@ class Index extends Component
 {
     public function render()
     {
-        
+        $user = auth()->user();
         return view('livewire.chat.index');
     }
 }

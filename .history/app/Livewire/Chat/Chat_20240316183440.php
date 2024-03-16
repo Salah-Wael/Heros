@@ -14,15 +14,15 @@ class Chat extends Component
     public function mount()
     {
 
-        $this->selectedConversation = Conversation::findOrFail($this->query);
-        /// dd($selectedConversation);
+        $this->selectedConversation= Conversation::findOrFail($this->query);
+       /// dd($selectedConversation);
 
 
-        #mark message belogning to receiver as read
-        Message::where('conversation_id', $this->selectedConversation->id)
+    #mark message belogning to receiver as read
+    Message::where('conversation_id',$this->selectedConversation->id)
             ->where('receiver_id', auth()->user()->id)
             ->whereNull('read_at')
-            ->update(['read_at' => now()]);
+            ->update(['read_at'=>now()]);
     }
 
 

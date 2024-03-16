@@ -1,8 +1,8 @@
 <?php
 
-use App\Livewire\Chat\Chat;
-use App\Livewire\Chat\Index;
-use App\Livewire\Users;
+use App\Http\Livewire\Chat\Chat;
+use App\Http\Livewire\Chat\Index;
+use App\Http\Livewire\Users;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroController;
@@ -83,6 +83,6 @@ Route::get('/test', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [Index::class,'render'])->name('chat.index');
-    Route::get('/chat/{query}', Chat::class)->name('chat');
-    Route::get('/chat/users', Users::class)->name('chat.users');
+    Route::get('/chat/{query}',Chat::class)->name('chat');
+    Route::get('/chat/users', [Users::class, 'render'])->name('chat.users');
 });

@@ -12,6 +12,7 @@ class Users extends Component
     {
         $users = User::where('id', '!=', auth()->user()->id)->where('role', '=', 'hero')->get();
         return view('livewire.users', compact('users'));
+            
     }
     public function message($userId)
     {

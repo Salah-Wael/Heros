@@ -26,7 +26,7 @@ Route::get('about',function(){
 
 });
 
-Route::post('sign-up',[]function(){
+Route::post('sign-up',function(){
     return  view ('sign-in');
 
 });

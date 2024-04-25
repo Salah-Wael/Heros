@@ -1,0 +1,28 @@
+[33m81df121[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m modify on google login ,able to set the password ,and modify on auth.login too
+[33m2d3293f[m add socialite feature with google
+[33m2b59e9e[m add forgot password view and follow to solve chat errors
+[33md9c0b05[m follow solve the chat errors
+[33mf701f34[m try to solve component error
+[33md23bfd1[m follow add chat feature
+[33m4bef5a1[m follow work on  chat feature
+[33m4454e34[m add chat feature
+[33m13462e1[m handle the middleware auth in all the files
+[33m985f70e[m handle the hero profile and try to add his registeration page
+[33m9537e1b[m modify search feature to cancel ->has('search')== 'admin'
+[33m80d8acb[m handle css/bootstrap to show and showTo Admin&Hero link
+[33m154a97c[m active search feature
+[33mfef1ee6[m handle delete function with if condition who can delete news
+[33m125614d[m modify who can edit in show-to-admin&hero file
+[33me778ecc[m modify who can edit the news (admin & hero)
+[33m330b84f[m handle user home route and modify on the news.index file
+[33m9748c62[m modifiy the update function and active it with the error masseges
+[33m60a5a19[m remove the middleware auth from AuthController and modify tap on the  logoand active the update function and modify edit view
+[33m3e0acf2[m modifie click on the logo and some things in the NewsController
+[33m7ddb2f3[m handle the heros roles of the news and midified the hero&admin nav
+[33m9989d3d[m modife the admin nav and index&all files
+[33mc773f15[m add the history files
+[33md7ea09b[m add show-to-admin&hero.blade.php file
+[33m0b51b37[m diffrence between show post with user and admin and handle (delete of the post) function
+[33m9a72a97[m add the public file (all the style files)
+[33mee47c2f[m add the project files and code
+[33mba26ca4[m Initial commit

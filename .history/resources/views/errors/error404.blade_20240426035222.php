@@ -30,7 +30,7 @@
 
                 @case('user')
                     <li class="first">
-                        <a class="btn btn-primary mt-3" href="{{ route('user') }}"><i class="ri-home-4-line"></i>Back to Home</a>
+                            <a class="btn btn-primary mt-3" href="{{ route('user') }}"><i class="ri-home-4-line"></i>Back to Home</a>
                     </li>
                     @break
 

@@ -87,7 +87,7 @@ class NewsController extends Controller{
     public function update(Request $request, $id)
     {
         // $news = DB::table('news')->where('id', $id)->first();
-        $news = News::findOrFail($id)
+        $news = News::findp($id)
         ->join('users', 'news.user_id', '=', 'users.id')
         ->select('news.*', 'users.role')
         ->where('news.id', $id)

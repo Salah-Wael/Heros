@@ -18,19 +18,19 @@
                         @switch(auth()->user()->role)
                         @case('admin')
                         <li class="first">
-                            <a class="btn btn-primary mt-3" href="{{ route('admin') }}"><i class="ri-home-4-line"></i>Back to Home</a>
+                                <a class="btn btn-primary mt-3" href="{{ route('admin') }}"><i class="ri-home-4-line"></i>Back to Home</a>
                         </li>
                     @break
 
                     @case('hero')
                     <li class="first">
-                        <a class="btn btn-primary mt-3" href="{{ route('hero') }}"><i class="ri-home-4-line"></i>Back to Home</a>
+                            <a class="btn btn-primary mt-3" href="{{ route('hero') }}"><i class="ri-home-4-line"></i>Back to Home</a>
                     </li>
                     @break
 
                 @case('user')
                     <li class="first">
-                        <a class="btn btn-primary mt-3" href="{{ route('user') }}"><i class="ri-home-4-line"></i>Back to Home</a>
+                            <a class="btn btn-primary mt-3" href="{{ route('user') }}"><i class="ri-home-4-line"></i>Back to Home</a>
                     </li>
                     @break
 

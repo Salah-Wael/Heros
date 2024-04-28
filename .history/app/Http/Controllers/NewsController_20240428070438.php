@@ -199,6 +199,11 @@ class NewsController extends Controller{
         ->where('news.id', $id)
         ->first();
 
+        // $tags = $news->tags;
+        // $relatedNews = [];
+        // foreach ($tags as $tag) {
+        //     array_push($relatedNews, ...$tag->news->where("id", "!=", $news->id));
+        // }
         $tags = $news->tags;
         $relatedNews = [];
         $addedNewsIds = []; // Temporary array to keep track of added news IDs

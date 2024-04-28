@@ -199,18 +199,12 @@ class NewsController extends Controller{
         ->where('news.id', $id)
         ->first();
 
-        $tags = $news->tags;
-        $relatedNews = [];
-        $addedNewsIds = []; // Temporary array to keep track of added news IDs
-        foreach ($tags as $tag) {
-            foreach ($tag->news->where("id", "!=", $news->id) as $related) {
-                if (!in_array($related->id, $addedNewsIds)) {
-                    $relatedNews[] = $related;
-                    $addedNewsIds[] = $related->id;
-                }
-            }
-        }
-
+        // $tags = $news->tags;
+        // $relatedNews = [];
+        // foreach ($tags as $tag) {
+        //     array_push($relatedNews, ...$tag->news->where("id", "!=", $news->id));
+        // }
+        
 
         $userRole = auth()->user()->role;
         switch ($userRole) {

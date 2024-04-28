@@ -140,9 +140,9 @@ class NewsController extends Controller{
         if ($request->has('search')) {
             $search = $request->get('search');
             $news = News::whereHas("user", function ($query) use ($search, $request) {
-                $query->whereRaw("CONCAT(firstName, ' ', lastName) LIKE ?", ["%$search%"])
-                ->orWhere("firstName", "LIKE", "%$search%")
+                $query->where("firstName", "LIKE", "%$search%")
                 ->orWhere("lastName", "LIKE", "%$search%")
+                ->orWhere("fName", "LIKE", "%$search%")
                     ->when($request->has('search') && $request->get('search') == 'hero', function ($query) use ($search) {
                         $query->orWhere("role", "LIKE", "%$search%");
                 });

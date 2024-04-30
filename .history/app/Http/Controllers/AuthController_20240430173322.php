@@ -27,8 +27,7 @@ class AuthController extends Controller
         'email' => ['required','email','unique:users'],
         'password'=> ['required','min:6','confirmed'],
         'birthDate' => ['required','date'],
-        'gender' => ['required'],
-        'checkbox' => ['required']
+        'gender' => ['required']
     ]);
     $user=new User;
     $user['firstName']=$validatedData['firstName'];
@@ -72,7 +71,7 @@ class AuthController extends Controller
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:6', 'confirmed'],
             'birthDate' => ['required', 'date'],
-            'gender' => ['required'],
+            'gender' => ['required']
             'checkbox' => ['required']
         ]);
         $user = new User;

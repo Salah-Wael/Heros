@@ -184,7 +184,7 @@ Sign Up as Hero
 
         <div class="d-inline-block w-100">
             <div class="form-check d-inline-block mt-2 pt-1">
-                <input type="checkbox" name="checkbox" class="form-check-input" id="customCheck1" required>
+                <input type="checkbox" class="form-check-input" id="customCheck1">
                 <label class="form-check-label" for="customCheck1">I accept <a href="#">Terms and Conditions</a></label>
             </div>
 

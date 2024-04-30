@@ -147,7 +147,7 @@ Sign Up as Hero
             <select class="form-select" id="sport" name="sport">
                 <option value="">__</option>
                 @foreach ($sports as $sport)
-                <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                <option value="{{ $sport->sport }} {{ old('sport') == $sport->sport ? 'selected' : '' }}">{{ $sport->sport }}</option>
                 @endforeach
             </select>
         </div>

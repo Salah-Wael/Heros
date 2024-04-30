@@ -51,7 +51,7 @@ Sign Up as Hero
         <div class="form-group">
             <label class="form-label" for="height">Height</label>
             <div class="input-group mb-3">
-                <input type="number" class="form-control" name="height" value="{{ old('height') }}" min="0.5" max="2.8" step="0.01" required>
+                <input type="number" class="form-control" name="height" value="{{ old('height') }}" min="50.0" max="2.8" step="0.01" required>
                 <span class="input-group-text">M</span>
             </div>
         </div>
@@ -110,7 +110,7 @@ Sign Up as Hero
         
         <div class="form-group">
             <label class="form-label" for="origin_country">Birth Country</label>
-            <select class="form-select" id="origin_country" name="origin_country" required>
+            <select class="form-select" id="origin_country" name="origin_country">
                 <option value="">__</option>
                 @foreach ($countries as $country)
                 <option value="{{ $country->country }}">{{ $country->country }}</option>
@@ -127,7 +127,7 @@ Sign Up as Hero
 
         <div class="form-group">
             <label class="form-label" for="play_country">Country you play with</label>
-            <select class="form-select" id="play_country" name="play_country" required>
+            <select class="form-select" id="play_country" name="play_country">
                 <option value="">__</option>
                 @foreach ($countries as $country)
                 <option value="{{ $country->country }}">{{ $country->country }}</option>
@@ -184,7 +184,7 @@ Sign Up as Hero
 
         <div class="d-inline-block w-100">
             <div class="form-check d-inline-block mt-2 pt-1">
-                <input type="checkbox" name="checkbox" class="form-check-input" id="customCheck1" required>
+                <input type="checkbox" class="form-check-input" id="customCheck1">
                 <label class="form-check-label" for="customCheck1">I accept <a href="#">Terms and Conditions</a></label>
             </div>
 

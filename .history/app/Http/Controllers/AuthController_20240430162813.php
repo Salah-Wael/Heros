@@ -27,8 +27,7 @@ class AuthController extends Controller
         'email' => ['required','email','unique:users'],
         'password'=> ['required','min:6','confirmed'],
         'birthDate' => ['required','date'],
-        'gender' => ['required'],
-        'checkbox' => ['required']
+        'gender' => ['required']
     ]);
     $user=new User;
     $user['firstName']=$validatedData['firstName'];
@@ -61,19 +60,18 @@ class AuthController extends Controller
     public function registerHero(Request $request)
     {
         $validatedData = $request->validate([
-            'firstName' => ['required', 'min:2', 'max:50'],
-            'lastName' => ['required', 'min:2', 'max:50'],
+            'firstName' => ['required', 'min:2', 'max:255'],
+            'lastName' => ['required', 'min:2', 'max:255'],
             'shortName' => ['required', 'min:2', 'max:20'],
-            'height' => ['required','numeric', 'min:0.5', 'max:2.50'],
-            'weight' => ['required','numeric', 'min:10'],
+            'height' => ['required', 'numeric'],
+            'weight' => ['required', 'numeric'],
             'origin_country' => ['required' ],
             'play_country' => ['required' ],
             'sport' => ['required' ],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:6', 'confirmed'],
             'birthDate' => ['required', 'date'],
-            'gender' => ['required'],
-            'checkbox' => ['required']
+            'gender' => ['required']
         ]);
         $user = new User;
         $user['firstName'] = $validatedData['firstName'];
@@ -90,19 +88,10 @@ class AuthController extends Controller
         }
         $user->save();
 
-        HerosRequest::create([
-            'firstName' =>$validatedData['firstName'],
-            'lastName' =>$validatedData['lastName'], 
-            'fullName' => $validatedData['firstName'] . ' ' . $validatedData['lastName'], 
-            'shortName' =>$validatedData['shortName'],
-            'height' =>$validatedData['height'],
-            'weight' =>$validatedData['weight'],
-            'origin_country' =>$validatedData['origin_country'],
-            'play_country' =>$validatedData['play_country'],
-            'sport' =>$validatedData['sport'],
-            'birthDate' =>$validatedData['birthDate'],
-            'gender' =>$validatedData['gender'], 
-        ]);
+        // HerosRequest::create([
+        //     '' =>$validatedData->
+        // ]);
+
 
         // $validatedData['password'] = bcrypt($validatedData['password']);
         // $user = User::create($validatedData);

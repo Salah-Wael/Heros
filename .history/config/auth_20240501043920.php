@@ -42,7 +42,7 @@ return [
         ],
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins',###################
+            'provider' => 'users',###################
         ],
         'hero' => [
             'driver' => 'session',
@@ -78,7 +78,7 @@ return [
         ],
         'heros' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Hero::class,
         ],
 
         // 'users' => [

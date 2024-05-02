@@ -129,7 +129,7 @@ class AuthController extends Controller
         if (User::where('password', '=', NULL)->exists()){
             return redirect()->route('socialite.set-password');
         }
-        elseif(auth()->attempt($validatedData, $request->get('remember'))) {
+        elseif(auth()->attempt($validatedData, $request->get('rem'))) {
             #logged in
             session()->regenerate();
             $userRole = auth()->user()->role;

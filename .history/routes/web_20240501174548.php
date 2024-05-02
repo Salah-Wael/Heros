@@ -51,12 +51,12 @@ Route::controller(SocialiteController::class)->group(function () {
 });
 
 Route::get('/admin', function () {
-if(auth()->user() && auth()->user()->role == 'admin'){
+if(auth()-> && auth()->user()->role == 'admin'){
     return view('admin.home');
 }else{
     return view('errors.error404');
 }
-})->name('admin')->middleware(['auth']);
+})->name('admin');
 
 Route::controller(HeroController::class)->group(function(){
     Route::get('/hero','heroHome')->name('hero');

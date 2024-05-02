@@ -47,7 +47,7 @@ sign in
 
         <div class="d-inline-block w-100">
             <div class="form-check d-inline-block mt-2 pt-1">
-                <input type="checkbox" name="remember" class="form-check-input" id="customCheck11">
+                <input type="checkbox" name="" class="form-check-input" id="customCheck11">
                 <label class="form-check-label" for="customCheck11">Remember Me</label>
             </div>
             <button type="submit" class="btn btn-primary float-end">Sign in</button>

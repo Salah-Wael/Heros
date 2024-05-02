@@ -78,7 +78,7 @@ return [
         ],
         'heros' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Hero::class,
         ],
 
         // 'users' => [

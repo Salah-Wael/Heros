@@ -56,7 +56,7 @@ if(auth()->user() && auth()->user()->role == 'admin'){
 }else{
     return view('errors.error404');
 }
-})->name('admin')->middleware(['auth']);
+})->name('admin')-;
 
 Route::controller(HeroController::class)->group(function(){
     Route::get('/hero','heroHome')->name('hero');

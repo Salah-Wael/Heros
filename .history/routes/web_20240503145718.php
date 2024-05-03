@@ -96,6 +96,7 @@ Route::controller(PaypalController::class)->group(function(){
 
 Route::controller(NewsController::class)->group(function(){
     Route::get('/news', 'index')->name('news.index');
+    // Route::get('/news/all', 'index')->name('news.all');
     Route::get('/news/create', 'create')->name('news.create');
     Route::post('/news/store', 'store')->name('news.store');
     Route::get('/news/{id}', 'show')->name('news.show');

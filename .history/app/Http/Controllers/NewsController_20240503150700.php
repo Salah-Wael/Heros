@@ -48,6 +48,7 @@ class NewsController extends Controller{
         $image->move(public_path('assets/images/news'), $noSpacesString);
         $news->image = $noSpacesString;
 
+
         $news->title = $data['title'];
         $news->content = $data['content'];
         $news->user_id = auth()->user()->id;
@@ -58,6 +59,19 @@ class NewsController extends Controller{
             $news->tags()->attach($tags);
         }
 
+        // $userRole = auth()->user()->role;
+        // switch ($userRole) {
+        //     case auth()->user()->role == 'admin':
+        //         return redirect()->route('news.all')->with('success', "News created successfully.");
+        //         break;
+                
+        //     case auth()->user()->role == 'hero':
+        //         return redirect()->route('news.index')->with('success', "News created successfully.");
+        //         break;
+                
+        //         default:
+        //         return view('home');
+        //     }
         return redirect()->route('news.index')->with('success', "News created successfully.");
     }
     public  function edit($id)

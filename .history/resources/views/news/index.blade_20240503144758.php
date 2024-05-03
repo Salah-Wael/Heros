@@ -38,7 +38,7 @@ Heros | News
                     <a href="#" class="iq-media">
                     <img class="img-fluid rounded-circle" src="../assets/images/icon/07.png" alt="">
                     </a>
-                </div>
+                </div>                                 
                 <div class="comment"><i class="ri-chat-3-line me-2"></i>7 comments</div>
             </div>
             </div>
@@ -83,7 +83,7 @@ Heros | News
                         <a href="#" class="iq-media">
                         <img class="img-fluid rounded-circle" src="../assets/images/icon/07.png" alt="">
                         </a>
-                    </div>
+                    </div>                                 
                     <div class="comment"><i class="ri-chat-3-line me-2"></i>7 comments</div>
                 </div>
                 </div>
@@ -94,7 +94,7 @@ Heros | News
 </div> --}}
 
 <div class="news">
-
+    
     @if ($news)
         @foreach($news as $new)
 
@@ -118,10 +118,10 @@ Heros | News
                         {{ $tag->tag }}
                     </span>
                 @endforeach
-
+                
                 <b>{{$new->title }}</b>
                 <br>
-
+                
                 <img src="{{ asset("assets/images/news/".$new->image) }}" alt="{{ $new->title }}">
 
                 @if (strlen($new->content) > 30)
@@ -130,23 +130,11 @@ Heros | News
                     <p >{{ substr($new->content,0,30) }}</p>
                 @endif
 
-                <a class="btn btn-primary" href="{{ route('news.show',$new->id) }}" role="button">Read</a>
-
-                @if (((auth()->user()->role == 'admin') && $new->role != 'hero')|| ((auth()->user()->role == 'hero') && auth()->user()->id == $new->user_id))
-                        <a class="btn btn-primary" href="{{ route('news.edit',$new->id) }}" role="button">Edit</a>
-                    @endif
-
-                    @if ((auth()->user()->role == 'admin') || ((auth()->user()->role == 'hero') && auth()->user()->id == $new->user_id))
-                        <form action="{{ route('news.delete',$new->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" class="btn btn-danger" name="post-delete-form" value="Delete">
-                        </form>
-                    @endif
+                <a class="btn btn-primary" href="{{ route('news.show',$new->id) }}" role="button">Read</a>      
             </div>
         @endforeach
     @else
-        <h2>Sorry! No news today</h2>
+            
     @endif
 </div>
 @endsection

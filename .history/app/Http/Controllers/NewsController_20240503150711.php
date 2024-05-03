@@ -48,6 +48,7 @@ class NewsController extends Controller{
         $image->move(public_path('assets/images/news'), $noSpacesString);
         $news->image = $noSpacesString;
 
+
         $news->title = $data['title'];
         $news->content = $data['content'];
         $news->user_id = auth()->user()->id;
@@ -58,6 +59,7 @@ class NewsController extends Controller{
             $news->tags()->attach($tags);
         }
 
+        
         return redirect()->route('news.index')->with('success', "News created successfully.");
     }
     public  function edit($id)

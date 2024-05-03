@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Sport;
 use App\Models\Country;
 use App\Models\HerosRequest;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests\HeroAuthRequest;
 use App\Http\Requests\UserAuthRequest;
 
@@ -22,6 +22,7 @@ class AuthController extends Controller
     }
 
     public function register(UserAuthRequest $request){
+    
         $user=new User;
         $user['firstName']= $request['firstName'];
         $user['lastName']= $request['lastName'];
@@ -52,6 +53,21 @@ class AuthController extends Controller
     }
     public function registerHero(HeroAuthRequest $request)
     {
+        // $validatedData = $request->validate([
+        //     'firstName' => ['required', 'min:2', 'max:50'],
+        //     'lastName' => ['required', 'min:2', 'max:50'],
+        //     'shortName' => ['required', 'min:2', 'max:20'],
+        //     'height' => ['required','numeric', 'min:0.5', 'max:2.50'],
+        //     'weight' => ['required','numeric', 'min:10'],
+        //     'origin_country' => ['required' ],
+        //     'play_country' => ['required' ],
+        //     'sport' => ['required' ],
+        //     'email' => ['required', 'email', 'unique:users'],
+        //     'password' => ['required', 'min:6', 'confirmed'],
+        //     'birthDate' => ['required', 'date'],
+        //     'gender' => ['required'],
+        //     'checkbox' => ['required']
+        // ]);
         $user = new User;
         $user['firstName'] = $request['firstName'];
         $user['lastName'] = $request['lastName'];

@@ -181,19 +181,19 @@ Sign Up as Hero
                 @enderror
             </div>
         @endif
-        
+        @if($errors->has('gender'))
+            <div class="alert alert-danger">
+                @error('gender')
+                {{ $message }}
+                @enderror
+            </div>
+        @endif
+
         <div class="d-inline-block w-100">
             <div class="form-check d-inline-block mt-2 pt-1">
                 <input type="checkbox" name="checkbox" class="form-check-input" id="customCheck1" required>
                 <label class="form-check-label" for="customCheck1">I accept <a href="#">Terms and Conditions</a></label>
             </div>
-            @if($errors->has('checkbox'))
-                <div class="alert alert-danger">
-                    @error('checkbox')
-                    {{ $message }}
-                    @enderror
-                </div>
-            @endif
 
             <button type="submit" class="btn btn-primary float-end">Sign Up</button>
         </div>

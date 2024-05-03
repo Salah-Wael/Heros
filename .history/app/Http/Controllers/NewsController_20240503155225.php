@@ -41,7 +41,6 @@ class NewsController extends Controller{
         );
 
         $news = new News();
-        
         $image = $request->file('image');
         $imageName= uniqid().$image->getClientOriginalName();
         $noSpacesString = str_replace(' ', '', $imageName);

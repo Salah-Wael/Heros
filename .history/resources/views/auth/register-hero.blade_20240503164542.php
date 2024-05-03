@@ -187,9 +187,9 @@ Sign Up as Hero
                 <input type="checkbox" name="checkbox" class="form-check-input" id="customCheck1" required>
                 <label class="form-check-label" for="customCheck1">I accept <a href="#">Terms and Conditions</a></label>
             </div>
-            @if($errors->has('checkbox'))
+            @if($errors->has('gender'))
                 <div class="alert alert-danger">
-                    @error('checkbox')
+                    @error('gender')
                     {{ $message }}
                     @enderror
                 </div>

@@ -39,9 +39,9 @@ class NewsController extends Controller{
                 'image' . 'mimes' => "The image field must be an image with extention (jpeg, jpg, png, jfif, or svg).",
             ]
         );
-
-        $news = new News();
         
+        $news = new News();
+
         $image = $request->file('image');
         $imageName= uniqid().$image->getClientOriginalName();
         $noSpacesString = str_replace(' ', '', $imageName);

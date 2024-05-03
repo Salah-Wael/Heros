@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Sport;
 use App\Models\Country;
 use App\Models\HerosRequest;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests\HeroAuthRequest;
 use App\Http\Requests\UserAuthRequest;
 
@@ -52,6 +52,7 @@ class AuthController extends Controller
     }
     public function registerHero(HeroAuthRequest $request)
     {
+        
         $user = new User;
         $user['firstName'] = $request['firstName'];
         $user['lastName'] = $request['lastName'];

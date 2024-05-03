@@ -163,7 +163,6 @@
                                         @enderror
                                     </div>
                                 @endif
-                                
                                 <button type="submit" class="btn btn-primary float-end">Sign Up</button>
                             </div>
                             <div class="sign-info">

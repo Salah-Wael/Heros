@@ -22,26 +22,36 @@ class AuthController extends Controller
     }
 
     public function register(UserAuthRequest $request){
-        $user=new User;
-        $user['firstName']= $request['firstName'];
-        $user['lastName']= $request['lastName'];
-        $user['email']= $request['email'];
-        $user['password']=bcrypt($request['password']);
-        $user['birthDate']= $request['birthDate'];
-        $user['gender']= $request['gender'];
-        if((strpos($user['email'], "@admin.me") !== false) && ($user['birthDate'] == '2002-02-02') &&  ($user['gender'] == 'male')) {
-            $user['role'] = 'admin';
-        }
-        else{
-            $user['role'] = 'user';
-        }
+    //     $validatedData = $request->validate([
+    //     // (string & | ) or array
+    //     'firstName' => ['required','min:3','max:255'],
+    //     'lastName' => ['required','min:3','max:255'],
+    //     'email' => ['required','email','unique:users'],
+    //     'password'=> ['required','min:6','confirmed'],
+    //     'birthDate' => ['required','date'],
+    //     'gender' => ['required'],
+    //     'checkbox' => ['required']
+    // ]);
+    $user=new User;
+    $user['firstName']=$validatedData['firstName'];
+    $user['lastName']=$validatedData['lastName'];
+    $user['email']=$validatedData['email'];
+    $user['password']=bcrypt($validatedData['password']);
+    $user['birthDate']=$validatedData['birthDate'];
+    $user['gender']=$validatedData['gender'];
+    if((strpos($user['email'], "@admin.me") !== false) && ($user['birthDate'] == '2002-02-02') &&  ($user['gender'] == 'male')) {
+        $user['role'] = 'admin';
+    }
+    else{
+        $user['role'] = 'user';
+    }
 
-        $user->save();
+    $user->save();
 
-        // $validatedData['password'] = bcrypt($validatedData['password']);
-        // $user = User::create($validatedData);
+    // $validatedData['password'] = bcrypt($validatedData['password']);
+    // $user = User::create($validatedData);
 
-        return redirect()->route('login')->with("success","Registration Successfully");
+    return redirect()->route('login')->with("success","Registration Successfully");
     }
 
     public function showRegisterHero()
@@ -52,6 +62,21 @@ class AuthController extends Controller
     }
     public function registerHero(HeroAuthRequest $request)
     {
+        // $validatedData = $request->validate([
+        //     'firstName' => ['required', 'min:2', 'max:50'],
+        //     'lastName' => ['required', 'min:2', 'max:50'],
+        //     'shortName' => ['required', 'min:2', 'max:20'],
+        //     'height' => ['required','numeric', 'min:0.5', 'max:2.50'],
+        //     'weight' => ['required','numeric', 'min:10'],
+        //     'origin_country' => ['required' ],
+        //     'play_country' => ['required' ],
+        //     'sport' => ['required' ],
+        //     'email' => ['required', 'email', 'unique:users'],
+        //     'password' => ['required', 'min:6', 'confirmed'],
+        //     'birthDate' => ['required', 'date'],
+        //     'gender' => ['required'],
+        //     'checkbox' => ['required']
+        // ]);
         $user = new User;
         $user['firstName'] = $request['firstName'];
         $user['lastName'] = $request['lastName'];

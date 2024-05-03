@@ -157,13 +157,12 @@
                                     <label class="form-check-label" for="customCheck1">I accept <a href="#">Terms and Conditions</a></label>
                                 </div>
                                 @if($errors->has('checkbox'))
-                                    <div class="alert alert-danger">
-                                        @error('checkbox')
-                                        {{ $message }}
-                                        @enderror
-                                    </div>
-                                @endif
-                                
+                                <div class="alert alert-danger">
+                                    @error('checkbox')
+                                    {{ $message }}
+                                    @enderror
+                                </div>
+                            @endif
                                 <button type="submit" class="btn btn-primary float-end">Sign Up</button>
                             </div>
                             <div class="sign-info">

@@ -6,8 +6,10 @@
     </div>
 
     <div class="grid w-full border-l h-full relative overflow-y-auto" style="contain:content">
-        <livewire:chat.chat-box :selectedConversation="$selectedConversation">
+    <livewire:chat.chat-box :selectedConversation="$selectedConversation">
+
     </div>
+
 
 </div>
 

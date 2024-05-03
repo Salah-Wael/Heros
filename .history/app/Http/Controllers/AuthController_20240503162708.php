@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HeroAuthRequest;
 use App\Models\User;
 use App\Models\Sport;
 use App\Models\Country;
 use App\Models\HerosRequest;
 use Illuminate\Http\Request;
-use App\Http\Requests\HeroAuthRequest;
-use App\Http\Requests\UserAuthRequest;
 
 class AuthController extends Controller
 {
@@ -21,27 +20,37 @@ class AuthController extends Controller
         return view('/auth.register');
     }
 
-    public function register(UserAuthRequest $request){
-        $user=new User;
-        $user['firstName']= $request['firstName'];
-        $user['lastName']= $request['lastName'];
-        $user['email']= $request['email'];
-        $user['password']=bcrypt($request['password']);
-        $user['birthDate']= $request['birthDate'];
-        $user['gender']= $request['gender'];
-        if((strpos($user['email'], "@admin.me") !== false) && ($user['birthDate'] == '2002-02-02') &&  ($user['gender'] == 'male')) {
-            $user['role'] = 'admin';
-        }
-        else{
-            $user['role'] = 'user';
-        }
+    public function register(Request $request){
+        $validatedData = $request->validate([
+        // (string & | ) or array
+        'firstName' => ['required','min:3','max:255'],
+        'lastName' => ['required','min:3','max:255'],
+        'email' => ['required','email','unique:users'],
+        'password'=> ['required','min:6','confirmed'],
+        'birthDate' => ['required','date'],
+        'gender' => ['required'],
+        'checkbox' => ['required']
+    ]);
+    $user=new User;
+    $user['firstName']=$validatedData['firstName'];
+    $user['lastName']=$validatedData['lastName'];
+    $user['email']=$validatedData['email'];
+    $user['password']=bcrypt($validatedData['password']);
+    $user['birthDate']=$validatedData['birthDate'];
+    $user['gender']=$validatedData['gender'];
+    if((strpos($user['email'], "@admin.me") !== false) && ($user['birthDate'] == '2002-02-02') &&  ($user['gender'] == 'male')) {
+        $user['role'] = 'admin';
+    }
+    else{
+        $user['role'] = 'user';
+    }
 
-        $user->save();
+    $user->save();
 
-        // $validatedData['password'] = bcrypt($validatedData['password']);
-        // $user = User::create($validatedData);
+    // $validatedData['password'] = bcrypt($validatedData['password']);
+    // $user = User::create($validatedData);
 
-        return redirect()->route('login')->with("success","Registration Successfully");
+    return redirect()->route('login')->with("success","Registration Successfully");
     }
 
     public function showRegisterHero()
@@ -52,14 +61,29 @@ class AuthController extends Controller
     }
     public function registerHero(HeroAuthRequest $request)
     {
+        // $validatedData = $request->validate([
+        //     'firstName' => ['required', 'min:2', 'max:50'],
+        //     'lastName' => ['required', 'min:2', 'max:50'],
+        //     'shortName' => ['required', 'min:2', 'max:20'],
+        //     'height' => ['required','numeric', 'min:0.5', 'max:2.50'],
+        //     'weight' => ['required','numeric', 'min:10'],
+        //     'origin_country' => ['required' ],
+        //     'play_country' => ['required' ],
+        //     'sport' => ['required' ],
+        //     'email' => ['required', 'email', 'unique:users'],
+        //     'password' => ['required', 'min:6', 'confirmed'],
+        //     'birthDate' => ['required', 'date'],
+        //     'gender' => ['required'],
+        //     'checkbox' => ['required']
+        // ]);
         $user = new User;
         $user['firstName'] = $request['firstName'];
         $user['lastName'] = $request['lastName'];
         $user['fullName'] = $user['firstName'].' '. $user['lastName'];
         $user['email'] = $request['email'];
-        $user['password'] = bcrypt($request['password']);
-        $user['birthDate'] = $request['birthDate'];
-        $user['gender'] = $request['gender'];
+        $user['password'] = bcrypt($validatedData['password']);
+        $user['birthDate'] = $validatedData['birthDate'];
+        $user['gender'] = $validatedData['gender'];
         if ((strpos($user['email'], "@admin.me") !== false) && ($user['birthDate'] == '2002-02-02') &&  ($user['gender'] == 'female')) {
             $user['role'] = 'admin';
         } else {
@@ -68,17 +92,17 @@ class AuthController extends Controller
         $user->save();
 
         HerosRequest::create([
-            'firstName' => $request['firstName'],
-            'lastName' => $request['lastName'], 
-            'fullName' => $request['firstName'] . ' ' . $request['lastName'], 
-            'shortName' => $request['shortName'],
-            'height' => $request['height'],
-            'weight' => $request['weight'],
-            'origin_country' => $request['origin_country'],
-            'play_country' => $request['play_country'],
-            'sport' => $request['sport'],
-            'birthDate' => $request['birthDate'],
-            'gender' => $request['gender'], 
+            'firstName' =>$validatedData['firstName'],
+            'lastName' =>$validatedData['lastName'], 
+            'fullName' => $validatedData['firstName'] . ' ' . $validatedData['lastName'], 
+            'shortName' =>$validatedData['shortName'],
+            'height' =>$validatedData['height'],
+            'weight' =>$validatedData['weight'],
+            'origin_country' =>$validatedData['origin_country'],
+            'play_country' =>$validatedData['play_country'],
+            'sport' =>$validatedData['sport'],
+            'birthDate' =>$validatedData['birthDate'],
+            'gender' =>$validatedData['gender'], 
         ]);
 
         // $validatedData['password'] = bcrypt($validatedData['password']);

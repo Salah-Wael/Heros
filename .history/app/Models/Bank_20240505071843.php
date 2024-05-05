@@ -12,6 +12,6 @@ class Bank extends Model
 
     public function currency()
     {
-        return $this->belongsToMany(Currency::class, 'banks_currencies', 'bank_id', 'currency_id');
+        return $this->belongsToMany(Currency::class, 'banks_currencies', '', 'currency_id');
     }
 }

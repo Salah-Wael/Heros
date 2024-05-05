@@ -6,6 +6,7 @@ Heros | support
     <link rel="stylesheet" href="{{ asset('assets/css/support.css') }}">
 @endsection
 
+
 @section('content')
     @if (session('cancel'))
         <div style="height:40px;color:black;background-image: linear-gradient(to right,#DF63FF,#82E9EF);display: flex;align-items: center;justify-content: center;">
@@ -45,7 +46,7 @@ Heros | support
                         </a>
                     </td>
                     <td align="center">
-                        <a class="btn btn-primary " target="_blank" onclick="pay()">Support with Fawater</a>
+                        <a class="btn btn-primary " target="_blank" onclick="fawaterkCheckout(pluginConfig);">Support with Fawater</a>
                     </td>
                 </tr>
             </table>
@@ -93,7 +94,7 @@ Heros | support
     <script>
         var pluginConfig = {
             envType: "test",
-            hashKey: {{ generateHashKey($data) }},
+            hashKey: "HASH-KEY",
             requestBody: {
                 "cartTotal": "50",
                 "currency": "EGP",
@@ -117,7 +118,6 @@ Heros | support
                         "quantity": "1"
                     }
                 ],
-                "sendEmail": true,
                 "payLoad": {
                     "custom_field1":"xyz",
                     "custom_field2":"xyz2"

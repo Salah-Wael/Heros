@@ -93,7 +93,7 @@ Heros | support
     <script>
         var pluginConfig = {
             envType: "test",
-            hashKey: {{ generateHashKey($data) }},
+            hashKey: <?php?>,
             requestBody: {
                 "cartTotal": "50",
                 "currency": "EGP",
@@ -117,7 +117,6 @@ Heros | support
                         "quantity": "1"
                     }
                 ],
-                "sendEmail": true,
                 "payLoad": {
                     "custom_field1":"xyz",
                     "custom_field2":"xyz2"

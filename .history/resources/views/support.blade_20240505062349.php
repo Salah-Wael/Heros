@@ -45,7 +45,7 @@ Heros | support
                         </a>
                     </td>
                     <td align="center">
-                        <a class="btn btn-primary " target="_blank" onclick="pay()">Support with Fawater</a>
+                        <a class="btn btn-primary " target="_blank" onclick="p">Support with Fawater</a>
                     </td>
                 </tr>
             </table>
@@ -93,7 +93,7 @@ Heros | support
     <script>
         var pluginConfig = {
             envType: "test",
-            hashKey: {{ generateHashKey($data) }},
+            hashKey: "HASH-KEY",
             requestBody: {
                 "cartTotal": "50",
                 "currency": "EGP",
@@ -117,7 +117,6 @@ Heros | support
                         "quantity": "1"
                     }
                 ],
-                "sendEmail": true,
                 "payLoad": {
                     "custom_field1":"xyz",
                     "custom_field2":"xyz2"

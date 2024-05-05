@@ -10,8 +10,8 @@ class Bank extends Model
 {
     use HasFactory;
 
-    public function currency()
+    public function bank()
     {
-        return $this->belongsToMany(Currency::class, 'banks_currencies', 'bank_id', 'currency_id');
+        return $this->belongsToMany(Currency::class, 'banks_currencies', 'bank_id', 'urrency_id');
     }
 }

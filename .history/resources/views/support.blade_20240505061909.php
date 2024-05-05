@@ -5,6 +5,50 @@ Heros | support
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/support.css') }}">
 @endsection
+@section('script')
+    <script src="https://app.fawaterk.com/fawaterkPlugin/fawaterkPlugin.min.js"></script>
+    <script>
+        public function generateHashKey($data){
+            $secretKey = "FAWATERAK_VENDOR_KEY";
+            $queryParam = "Domain=YOUR_WEBSITE_DOMAIN&ProviderKey=FAWATERAK_PROVIDER_KEY";
+            $hash = hash_hmac('sha256', $queryParam, $secretKey, false);
+            return $hash;
+        }
+        
+        var pluginConfig = {
+            envType: "test",
+            hashKey: "HASH-KEY",
+            requestBody: {
+                "cartTotal": "50",
+                "currency": "EGP",
+                "customer": {
+                    "first_name": "test",
+                    "last_name": "fawaterk",
+                },
+                "redirectionUrls": {
+                    "successUrl": "https://dev.fawaterk.com/success",
+                    "failUrl": "https://dev.fawaterk.com/fail",
+                    "pendingUrl": "https://dev.fawaterk.com/pending"
+                },
+                "cartItems": [{
+                        "name": "this is test oop 112252",
+                        "price": "25",
+                        "quantity": "1"
+                    },
+                    {
+                        "name": "this is test oop 112252",
+                        "price": "25",
+                        "quantity": "1"
+                    }
+                ],
+                "payLoad": {
+                    "custom_field1":"xyz",
+                    "custom_field2":"xyz2"
+                }
+            }
+        };
+    </script>
+@endsection
 
 @section('content')
     @if (session('cancel'))
@@ -45,7 +89,7 @@ Heros | support
                         </a>
                     </td>
                     <td align="center">
-                        <a class="btn btn-primary " target="_blank" onclick="pay()">Support with Fawater</a>
+                        <a class="btn btn-primary " target="_blank" onclick="fawaterkCheckout(pluginConfig);">Support with Fawater</a>
                     </td>
                 </tr>
             </table>
@@ -86,47 +130,4 @@ Heros | support
             </table>
         </div>
     </div> --}}
-@endsection
-
-@section('script')
-    <script src="https://app.fawaterk.com/fawaterkPlugin/fawaterkPlugin.min.js"></script>
-    <script>
-        var pluginConfig = {
-            envType: "test",
-            hashKey: {{ generateHashKey($data) }},
-            requestBody: {
-                "cartTotal": "50",
-                "currency": "EGP",
-                "customer": {
-                    "first_name": "test",
-                    "last_name": "fawaterk",
-                },
-                "redirectionUrls": {
-                    "successUrl": "https://dev.fawaterk.com/success",
-                    "failUrl": "https://dev.fawaterk.com/fail",
-                    "pendingUrl": "https://dev.fawaterk.com/pending"
-                },
-                "cartItems": [{
-                        "name": "this is test oop 112252",
-                        "price": "25",
-                        "quantity": "1"
-                    },
-                    {
-                        "name": "this is test oop 112252",
-                        "price": "25",
-                        "quantity": "1"
-                    }
-                ],
-                "sendEmail": true,
-                "payLoad": {
-                    "custom_field1":"xyz",
-                    "custom_field2":"xyz2"
-                }
-            }
-        };
-
-        function pay(){
-            fawaterkCheckout(pluginConfig);
-        }
-    </script>
 @endsection

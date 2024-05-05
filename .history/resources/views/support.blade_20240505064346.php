@@ -117,7 +117,7 @@ Heros | support
                         "quantity": "1"
                     }
                 ],
-                "sendEmail": true,
+                "sendEmail": true
                 "payLoad": {
                     "custom_field1":"xyz",
                     "custom_field2":"xyz2"

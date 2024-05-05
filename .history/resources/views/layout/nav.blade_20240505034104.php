@@ -89,6 +89,7 @@
 
 @yield('content')
 
+
     <footer class="iq-footer bg-white">
         <div class="container-fluid">
             <div class="row">

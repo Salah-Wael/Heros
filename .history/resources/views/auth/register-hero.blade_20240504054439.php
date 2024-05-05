@@ -81,7 +81,7 @@ Sign Up as Hero
         
         <div class="form-group">
             <label class="form-label" for="exampleInputEmail2">Email address</label>
-            <input type="email" class="form-control mb-0" name='email' value="{{ old('email') }}" id="exampleInputEmail2" placeholder="you@example.com" required>
+            <input type="email" class="form-control mb-0" name='email' value="{{ old('email') }}" id="exampleInputEmail2" placeholder="a" required>
         </div>
         @if($errors->has('email'))
         <div class="alert alert-danger">

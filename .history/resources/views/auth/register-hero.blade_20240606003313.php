@@ -4,7 +4,7 @@
 Heros | register as Hero
 @endsection
 @section('h2')
-Sign Up as Hero
+Sign Up as Hero💪
 @endsection
 
 @section('sign')
@@ -164,14 +164,14 @@ Sign Up as Hero
         </div>
 
         <div class="form-group">
-        {{-- <label for="cardImage" class="custom-file-upload">
+        <label for="cardImage" class="custom-file-upload">
             <span>Send the game association card</span>
         </label>
         <input type="file" name="images[]" id="cardImage" accept=".jpeg, .jpg, .png, .jfif, .svg">
         </div>
         <label for="images1" class="custom-file-upload">
             <span>Send 4 Images for yourself</span>
-        </label> --}}
+        </label>
         <input type="file" name="images[]" id="images1" accept=".jpeg, .jpg, .png, .jfif, .svg">
         </div>
 
@@ -199,7 +199,7 @@ Sign Up as Hero
         <br>
             <label class="form-label" for="gender">Gender:</label>
 
-        <input type="radio" id="male" name="gender" value="male">
+            <input type="radio" id="male" name="gender" value="male">
             <label for="male">Male</label>
 
             <input type="radio" id="female" name="gender" value="female">

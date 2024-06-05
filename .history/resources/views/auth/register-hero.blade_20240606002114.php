@@ -4,11 +4,11 @@
 Heros | register as Hero
 @endsection
 @section('h2')
-Sign Up as Hero
+Sign Up as Hero💪
 @endsection
 
 @section('sign')
-    <form style="height:440px;margin-top:-60px" action="/register-hero" enctype="multipart/form-data" method="POST">
+    <form style="height:600px;margin-top:-60px" action="/register-hero" enctype="multipart/form-data" method="POST">
         @csrf
 
         <div class="form-group">

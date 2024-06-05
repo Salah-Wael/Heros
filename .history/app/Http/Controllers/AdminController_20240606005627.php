@@ -85,6 +85,7 @@ class AdminController extends Controller
     public function insertIntoHerosTable($id)
     {
         $heroRequest = HerosRequest::with('images')->find($id);
+        
 
         if ($heroRequest) {
             $hero = Hero::create([

@@ -4,7 +4,7 @@
 Heros | register as Hero
 @endsection
 @section('h2')
-Sign Up as Hero
+Sign Up as Hero💪
 @endsection
 
 @section('sign')
@@ -199,7 +199,7 @@ Sign Up as Hero
         <br>
             <label class="form-label" for="gender">Gender:</label>
 
-        <input type="radio" id="male" name="gender" value="male">
+            <input type="radio" id="male" name="gender" value="male">
             <label for="male">Male</label>
 
             <input type="radio" id="female" name="gender" value="female">

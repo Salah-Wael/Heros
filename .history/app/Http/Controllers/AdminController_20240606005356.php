@@ -67,7 +67,10 @@ class AdminController extends Controller
     public function forceDeleteHeroRequest($id)
     {
         $herosRequest = HerosRequest::with('images')->findOrFail($id);
-        
+        // dd($herosRequest);
+        // foreach ($herosRequest->images as $image) {
+        //     File::delete(public_path('assets/images/HerosImages') . $image->image);
+        // }
         foreach ($herosRequest->images as $image) {
             // Ensure the image path is constructed correctly
             $imagePath = public_path('assets/images/HerosImages') . '/' . $image->image;
@@ -77,7 +80,6 @@ class AdminController extends Controller
                 File::delete($imagePath);
             }
         }
-
         HerosRequest::withTrashed()->where('id', $id)->forceDelete();
         
         return redirect()->back()->with("success", "Deleted Successfully");
@@ -85,6 +87,7 @@ class AdminController extends Controller
     public function insertIntoHerosTable($id)
     {
         $heroRequest = HerosRequest::with('images')->find($id);
+        // dd($heroRequest);
 
         if ($heroRequest) {
             $hero = Hero::create([

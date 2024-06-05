@@ -4,7 +4,7 @@
 Heros | register as Hero
 @endsection
 @section('h2')
-Sign Up as Hero
+Sign Up as Hero💪
 @endsection
 
 @section('sign')

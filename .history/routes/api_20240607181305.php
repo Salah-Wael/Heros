@@ -26,6 +26,7 @@ use App\Http\Controllers\Api\SocialiteController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'showLogin');
     Route::post('/auth/login', 'login');
@@ -50,27 +51,6 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('/news/{news}/edit', 'edit');
         Route::put('/news/{id}', 'update');
         Route::delete('/news/{id}/delete', 'delete');
-    });
-
-    Route::controller(AdminController::class)->group(function () {
-        Route::get('/heros_request', 'herosRequest');
-        Route::get('/heros_request/archived', 'archivedHerosRequest');
-        Route::delete('/heros_request/{id}/delete', 'deleteHeroRequest');
-        Route::delete('/heros_request/{id}/force_delete', 'forceDeleteHeroRequest');
-        Route::get('/heros_request/{id}/unArchived', 'resotreHeroRequest');
-        Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable');
-    });
-
-    Route::controller(PaypalController::class)->group(function () {
-        Route::get('/payment', 'payment');
-        Route::get('/cancel', 'cancel');
-        Route::get('/support/success', 'success');
-    });
-
-    Route::controller(StripeController::class)->group(function () {
-        Route::get('support', 'stripe');
-        Route::post('support', 'pay');
-        Route::get('/success', 'success');
     });
 
 });
@@ -98,15 +78,32 @@ Route::get('privacy-policy', function () {
     return  view('terms.privacy-policy');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/chat', [Index::class, 'render'])->name('chat.index');
+    Route::get('/chat/{query}', [Chat::class, 'render'])->name('chat');
+    Route::post('/chat/{query}', [ChatBox::class, 'sendMessage']);
+    Route::get('/chat/users', [Users::class, 'render'])->name('chat.users');
+});
 
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/heros_request', 'herosRequest')->name('heros.show_requests');
+    Route::get('/heros_request/archived', 'archivedHerosRequest');
+    Route::delete('/heros_request/{id}/delete', 'deleteHeroRequest');
+    Route::delete('/heros_request/{id}/force_delete', 'forceDeleteHeroRequest');
+    Route::get('/heros_request/{id}/unArchived', 'resotreHeroRequest');
+    Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable');
+});
+
+Route::controller(PaypalController::class)->group(function () {
+    Route::get('/payment', 'payment');
+    Route::get('/cancel', 'cancel');
+    Route::get('/support/success', 'success');
+});
+Route::controller(StripeController::class)->group(function () {
+    Route::get('support', 'stripe')->middleware('auth')->name('support');
+    Route::post('support', 'pay')->name('stripe.pay');
+    Route::get('/success', 'success')->name('success');
+});
 // Route::get('support',function(){
     //     return  view ('support');
     // })->middleware('auth')->name('support');
-
-
-    // Route::middleware('auth')->group(function () {
-    //     Route::get('/chat', [Index::class, 'render'])->name('chat.index');
-    //     Route::get('/chat/{query}', [Chat::class, 'render'])->name('chat');
-    //     Route::post('/chat/{query}', [ChatBox::class, 'sendMessage']);
-    //     Route::get('/chat/users', [Users::class, 'render'])->name('chat.users');
-    // });

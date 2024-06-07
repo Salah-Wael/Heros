@@ -26,6 +26,7 @@ use App\Http\Controllers\Api\SocialiteController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'showLogin');
     Route::post('/auth/login', 'login');
@@ -53,13 +54,13 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
     });
 
     Route::controller(AdminController::class)->group(function () {
-        Route::get('/heros_request', 'herosRequest');
-        Route::get('/heros_request/archived', 'archivedHerosRequest');
-        Route::delete('/heros_request/{id}/delete', 'deleteHeroRequest');
-        Route::delete('/heros_request/{id}/force_delete', 'forceDeleteHeroRequest');
-        Route::get('/heros_request/{id}/unArchived', 'resotreHeroRequest');
-        Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable');
-    });
+    Route::get('/heros_request', 'herosRequest');
+    Route::get('/heros_request/archived', 'archivedHerosRequest');
+    Route::delete('/heros_request/{id}/delete', 'deleteHeroRequest');
+    Route::delete('/heros_request/{id}/force_delete', 'forceDeleteHeroRequest');
+    Route::get('/heros_request/{id}/unArchived', 'resotreHeroRequest');
+    Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable');
+});
 
     Route::controller(PaypalController::class)->group(function () {
         Route::get('/payment', 'payment');

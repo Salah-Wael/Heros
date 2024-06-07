@@ -26,6 +26,7 @@ use App\Http\Controllers\Api\SocialiteController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'showLogin');
     Route::post('/auth/login', 'login');

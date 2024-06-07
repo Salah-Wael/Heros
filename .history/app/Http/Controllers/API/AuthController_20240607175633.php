@@ -31,7 +31,7 @@ class AuthController extends BaseController
             return $this->success($data);
         } else {
             return $this->error([
-                'message' => 'Invalid Login Details!'
+                'message' => 'invalid Credientials'
             ]);
         }
     }
@@ -170,27 +170,27 @@ class AuthController extends BaseController
 
     }
 
-    public function  logout() {
-        auth()->logout();
-        session()->regenerateToken();
-        session()->invalidate();
-        // return  redirect()->route('login')->with("success","Logged out successfully!");
-        return response()->json([
-            'status' => 200,
-            'success' => "Logged out successfully!",
-        ]);
-    }
+    // public function  logout() {
+    //     auth()->logout();
+    //     session()->regenerateToken();
+    //     session()->invalidate();
+    //     // return  redirect()->route('login')->with("success","Logged out successfully!");
+    //     return response()->json([
+    //         'status' => 200,
+    //         'success' => "Logged out successfully!",
+    //     ]);
+    // }
     /**
      * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    // public function logout()
-    // {
-    //     auth()->logout();
+    public function logout()
+    {
+        auth()->logout();
 
-    //     return response()->json(['message' => 'User successfully signed out']);
-    // }
+        return response()->json(['message' => 'User successfully signed out']);
+    }
 
     public function profile(Request $request)
     {

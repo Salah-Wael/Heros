@@ -26,6 +26,7 @@ use App\Http\Controllers\Api\SocialiteController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'showLogin');
     Route::post('/auth/login', 'login');
@@ -50,15 +51,6 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('/news/{news}/edit', 'edit');
         Route::put('/news/{id}', 'update');
         Route::delete('/news/{id}/delete', 'delete');
-    });
-
-    Route::controller(AdminController::class)->group(function () {
-        Route::get('/heros_request', 'herosRequest');
-        Route::get('/heros_request/archived', 'archivedHerosRequest');
-        Route::delete('/heros_request/{id}/delete', 'deleteHeroRequest');
-        Route::delete('/heros_request/{id}/force_delete', 'forceDeleteHeroRequest');
-        Route::get('/heros_request/{id}/unArchived', 'resotreHeroRequest');
-        Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable');
     });
 
     Route::controller(PaypalController::class)->group(function () {
@@ -97,6 +89,9 @@ Route::get('terms', function () {
 Route::get('privacy-policy', function () {
     return  view('terms.privacy-policy');
 });
+
+
+
 
 
 // Route::get('support',function(){

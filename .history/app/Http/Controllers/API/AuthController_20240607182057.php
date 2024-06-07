@@ -31,7 +31,7 @@ class AuthController extends BaseController
             return $this->success($data);
         } else {
             return $this->error([
-                'message' => 'Invalid Login Details!'
+                'message' => 'invalid Credientials'
             ]);
         }
     }

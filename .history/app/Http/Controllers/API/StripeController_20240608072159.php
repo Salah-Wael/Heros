@@ -20,25 +20,12 @@ class StripeController extends Controller
     public function stripe()
     {
         $currencies = Bank::find(2)->currencies;
-        // return view('support', compact('currencies'));
-        return response()->json([
-            'status' => 200,
-            'currencies' => $currencies,
-        ]);
+        return view('support', compact('currencies'));
     }
 
     public function pay(Request $request)
     {
-        $data = Validator::make($request->all(), [
-            'currency' => ['required'],
-            'support' => ['required', 'numeric', 'min:50', 'digits_between:2,7'],
-        ]);
-
-        if ($data->fails()) {
-            return response()->json($data->errors()->toJson(), 400);
-        }
-
-        // $validatedData = $data->validated();
+        Expected type 'object'. Found 'array'
 
         $id = $this->stripe->products->create([
             'name' => 'Support',
@@ -62,7 +49,7 @@ class StripeController extends Controller
 
             'mode' => 'payment',
             // # These placeholder URLs will be replaced in a following step.
-            'success_url' => 'http://127.0.0.1:8000/api/success',
+            'success_url' => route('success'),
             'cancel_url' => 'https://example.com/cancel',
         ]);
 
@@ -72,7 +59,7 @@ class StripeController extends Controller
         // return redirect('support')->with('success', 'You have supported the hero successfully');
         return response()->json([
             'status' => 200,
-            'success' => "You have supported the Hero successfully, Thanks to use Heros",
+            'success' => "You have supported the hero successfully",
         ]);
     }
 }

@@ -62,6 +62,7 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable');
     });
 
+    
     Route::controller(StripeController::class)->group(function () {
         Route::get('support', 'stripe');
         Route::post('support', 'pay');

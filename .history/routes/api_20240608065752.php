@@ -62,12 +62,12 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable');
     });
 
+    
     Route::controller(StripeController::class)->group(function () {
         Route::get('support', 'stripe');
         Route::post('support', 'pay');
         Route::get('/success', 'success');
     });
-
     Route::controller(HeroController::class)->group(function () {
         Route::get('/hero', 'heroHome');
         Route::get('/search-hero-profile', 'searchAboutHeroProfile');
@@ -75,20 +75,20 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('/profile/{id}/edit', 'editHeroProfile');
     });
 
-    Route::get('/', function () {
-        return view('home');
-    });
-    
-    Route::get('about', function () {
-        return  view('about');
-    });
 });
 
 
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('about', function () {
+    return  view('about');
+});
 
 Route::get('terms', function () {
     return  view('terms.terms');
-});
+})->name('terms');
 
 Route::get('privacy-policy', function () {
     return  view('terms.privacy-policy');

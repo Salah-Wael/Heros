@@ -72,7 +72,7 @@ class StripeController extends Controller
         // return redirect('support')->with('success', 'You have supported the hero successfully');
         return response()->json([
             'status' => 200,
-            'success' => "You have supported the Hero successfully, Thanks to use Heros",
+            'success' => "You have supported the Hero successfully, Th",
         ]);
     }
 }

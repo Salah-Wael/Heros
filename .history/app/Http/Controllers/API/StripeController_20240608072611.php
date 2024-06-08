@@ -38,7 +38,7 @@ class StripeController extends Controller
             return response()->json($data->errors()->toJson(), 400);
         }
 
-        // $validatedData = $data->validated();
+        $validatedData = $data->validated();
 
         $id = $this->stripe->products->create([
             'name' => 'Support',
@@ -62,7 +62,7 @@ class StripeController extends Controller
 
             'mode' => 'payment',
             // # These placeholder URLs will be replaced in a following step.
-            'success_url' => 'http://127.0.0.1:8000/api/success',
+            'success_url' => route('success'),
             'cancel_url' => 'https://example.com/cancel',
         ]);
 
@@ -72,7 +72,7 @@ class StripeController extends Controller
         // return redirect('support')->with('success', 'You have supported the hero successfully');
         return response()->json([
             'status' => 200,
-            'success' => "You have supported the Hero successfully, Thanks to use Heros",
+            'success' => "You have supported the hero successfully",
         ]);
     }
 }

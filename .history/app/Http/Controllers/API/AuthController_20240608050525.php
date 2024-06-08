@@ -28,8 +28,9 @@ class AuthController extends BaseController
 
     public function login(LoginRequest $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if ($token= Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $data = new UserResource(auth()->user());
+            $this->createNewToken($token);
             return $this->success($data);
         } else {
             return $this->error([
@@ -193,6 +194,16 @@ class AuthController extends BaseController
 
     //     return response()->json(['message' => 'User successfully signed out']);
     // }
+
+    protected function createNewToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => auth()->user()
+        ]);
+    }
 
     public function profile(Request $request)
     {

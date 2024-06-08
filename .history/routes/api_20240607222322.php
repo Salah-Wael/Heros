@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Livewire\Chat\ChatBox;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HeroController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\AdminController;
@@ -44,7 +44,6 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
 
     Route::controller(NewsController::class)->group(function () {
         Route::get('/news', 'index');
-        Route::get('/news/search', 'searchAboutNews');
         Route::get('/news/create', 'create');
         Route::post('/news/store', 'store');
         Route::get('/news/{id}', 'show');
@@ -58,7 +57,7 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('/heros_request/archived', 'archivedHerosRequest');
         Route::delete('/heros_request/{id}/delete', 'deleteHeroRequest');
         Route::delete('/heros_request/{id}/force_delete', 'forceDeleteHeroRequest');
-        Route::get('/heros_request/{id}/unArchived', 'restoreHeroRequest');
+        Route::post('/heros_request/{id}/unArchived', 'resotreHeroRequest');
         Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable');
     });
 

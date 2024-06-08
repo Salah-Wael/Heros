@@ -132,8 +132,8 @@ class NewsController extends Controller{
             ],
             #errors
             [
-                'image.image' => "The file field must be an image.",
-                'image.mimes' => "The file field must be an image with extension jpeg, jpg, png, jfif, or svg.",
+                'image.image' => "The image field must be an image.",
+                'image.mimes' => "The image field must be an image with extension jpeg, jpg, png, jfif, or svg.",
             ]);
 
             if ($data->fails()) {

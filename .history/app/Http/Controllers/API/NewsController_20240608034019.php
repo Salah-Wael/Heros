@@ -63,8 +63,6 @@ class NewsController extends Controller{
             ]);
         }
 
-        $validatedData = $data->validated();
-
         $news = new News();
 
         $image = $request->file('image');
@@ -73,8 +71,8 @@ class NewsController extends Controller{
         $image->move(public_path('assets/images/news'), $noSpacesString);
         $news->image = $noSpacesString;
 
-        $news->title = $validatedData['title'];
-        $news->content = $validatedData['content'];
+        $news->title = $data['title'];
+        $news->content = $data['content'];
         $news->user_id = auth()->user()->id;
         $news->save();
 
@@ -88,7 +86,7 @@ class NewsController extends Controller{
             return response()->json([
                 'status' => 201,
                 'success' => "News created successfully.",
-                // 'news' => $news,
+                'news' => $news,
             ]);
         }
         return response()->json([
@@ -132,8 +130,8 @@ class NewsController extends Controller{
             ],
             #errors
             [
-                'image.image' => "The file field must be an image.",
-                'image.mimes' => "The file field must be an image with extension jpeg, jpg, png, jfif, or svg.",
+                'image.image' => "The image field must be an image.",
+                'image.mimes' => "The image field must be an image with extension jpeg, jpg, png, jfif, or svg.",
             ]);
 
             if ($data->fails()) {
@@ -143,15 +141,13 @@ class NewsController extends Controller{
                 ]);
             }
 
-            $validatedData = $data->validated();
-
             if($news->title != $request->title || $news->content != $request->content){
                 $news->updated_at = now();
             }
 
             $updateData = [
-                'title' => $validatedData['title'],
-                'content' => $validatedData['content'],
+                'title' => $data['title'],
+                'content' => $data['content'],
             ];
 
             if ($request->hasfile('image')) {
@@ -173,7 +169,7 @@ class NewsController extends Controller{
             return response()->json([
                 'status' => 201,
                 'message' => "News updated successfully.",
-                'news-id' => $id
+                'id' => $id
             ]);
         } else {
             // return view('errors.error404');
@@ -203,11 +199,6 @@ class NewsController extends Controller{
             ->select('news.*', 'users.firstName', 'users.lastName', 'users.role')
             ->orderBy('news.created_at', 'desc')
             ->get();
-
-        return response()->json([
-            'status' => 200,
-            'news' => $news
-        ]);
     }
     public function index(Request $request){
 
@@ -220,11 +211,6 @@ class NewsController extends Controller{
             ->select('news.*', 'users.firstName', 'users.lastName', 'users.role')
             ->orderBy('news.created_at', 'desc')
             ->get();
-
-            return response()->json([
-                'status' => 200,
-                'news' => $news
-            ]);
         }
 
         // return view('news.index', compact('news'));

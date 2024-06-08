@@ -44,7 +44,7 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
 
     Route::controller(NewsController::class)->group(function () {
         Route::get('/news', 'index');
-        Route::get('/news/search', 'searchAboutNews');
+        Route::get('/news/search', 'index');
         Route::get('/news/create', 'create');
         Route::post('/news/store', 'store');
         Route::get('/news/{id}', 'show');

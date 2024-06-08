@@ -4,6 +4,7 @@ use App\Models\Hero;
 use App\Livewire\Users;
 use App\Livewire\Chat\Chat;
 use App\Livewire\Chat\Index;
+use App\Livewire\Chat\ChatBox;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HeroController;
@@ -37,7 +38,7 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/forgot-password', 'showForgotPassword')->name('forgot-Password');
     Route::post('/forgot-password', 'forgotPassword');
 
-    Route::post('/logout','logout')->middleware('auth');
+    Route::post('/logout','logout')->name('logout')->middleware('auth');
 });
 
 Route::controller(SocialiteController::class)->group(function () {
@@ -62,18 +63,18 @@ if(auth()->user() && auth()->user()->role == 'admin'){
 
 Route::controller(HeroController::class)->group(function(){
     Route::get('/hero','heroHome')->name('hero');
+    Route::get('/search-hero-profile','searchAboutHeroProfile')->name('search.hero');
     Route::get('/profile/{id}', 'heroProfile')->name('hero-profile');
     Route::get('/profile/{id}/edit', 'editHeroProfile')->name('edit-hero-profile');
 });
 
 Route::get('/dashboard',function(){
 return view ('home');
-})->middleware('auth')->name('user');
+})->name('user');
 
 Route::get('/',function(){
 return view ('home');
-})->middleware('auth');
-
+});
 
 Route::get('about',function(){
     return  view ('about');
@@ -82,15 +83,10 @@ Route::get('about',function(){
 Route::get('terms',function(){
     return  view ('terms.terms');
 })->name('terms');
-Route::get('4',function(){
+
+Route::get('privacy-policy',function(){
     return  view ('terms.privacy-policy');
 })->name('privacy-policy');
-
-Route::controller(PaypalController::class)->group(function(){
-    Route::get('/payment', 'payment')->name('payment');
-    Route::get('/cancel', 'cancel')->name('payment.cancel');
-    Route::get('/support/success', 'success')->name('payment.success');
-});
 
 Route::controller(NewsController::class)->group(function(){
     Route::get('/news', 'index')->name('news.index');
@@ -109,6 +105,7 @@ Route::controller(NewsController::class)->group(function(){
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [Index::class,'render'])->name('chat.index');
     Route::get('/chat/{query}', [Chat::class, 'render'])->name('chat');
+    Route::post('/chat/{query}', [ChatBox::class, 'sendMessage']);
     Route::get('/chat/users', [Users::class, 'render'])->name('chat.users');
 });
 
@@ -117,15 +114,21 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/heros_request/archived', 'archivedHerosRequest')->name('heros.show_archived_requests');
     Route::delete('/heros_request/{id}/delete', 'deleteHeroRequest')->name('heros.archive_request');
     Route::delete('/heros_request/{id}/force_delete', 'forceDeleteHeroRequest')->name('heros.force_delete_request');
-    Route::get('/heros_request/{id}/unArchived', 'resotreHeroRequest')->name('heros.resotre_request');
-    Route::get('/heros_request/accept', 'insertIntoHerosTable')->name('heros.accept_request');
+    Route::post('/heros_request/{id}/unArchived', 'resotreHeroRequest')->name('heros.resotre_request');
+    Route::get('/heros_request/{id}/accept', 'insertIntoHerosTable')->name('heros.accept_request');
 });
 
+Route::controller(PaypalController::class)->group(function(){
+    Route::get('/payment', 'payment')->name('payment');
+    Route::get('/cancel', 'cancel')->name('payment.cancel');
+    Route::get('/support/success', 'success')->name('payment.success');
+});
 Route::controller(StripeController::class)->group(function () {
-    Route::post('support', 'pay')->name('stripe.pay');
     Route::get('support', 'stripe')->middleware('auth')->name('support');
+    Route::post('support', 'pay')->name('stripe.pay');
     Route::get('/success', 'success')->name('success');
 });
 // Route::get('support',function(){
-//     return  view ('support');
-// })->middleware('auth')->name('support');
+    //     return  view ('support');
+    // })->middleware('auth')->name('support');
+

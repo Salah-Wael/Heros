@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\HerosRequest;
 use Illuminate\Http\Request;
 use App\Models\HeroRequestImage;
+use omaradel\Algoriza\Models\Task;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Apis\LoginRequest;

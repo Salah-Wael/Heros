@@ -28,8 +28,9 @@ class AuthController extends BaseController
 
     public function login(LoginRequest $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if ($token= Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $data = new UserResource(auth()->user());
+            $this->createNewToken($token);
             return $this->success($data);
         } else {
             return $this->error([

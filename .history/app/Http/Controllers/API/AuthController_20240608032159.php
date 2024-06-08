@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\HerosRequest;
 use Illuminate\Http\Request;
 use App\Models\HeroRequestImage;
+use omaradel\Algoriza\Models\Task;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Apis\LoginRequest;
@@ -30,6 +31,7 @@ class AuthController extends BaseController
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $data = new UserResource(auth()->user());
+            $this->createNewToken($token);
             return $this->success($data);
         } else {
             return $this->error([

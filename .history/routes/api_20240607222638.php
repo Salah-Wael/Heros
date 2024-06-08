@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Livewire\Chat\ChatBox;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HeroController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\AdminController;
@@ -44,7 +44,6 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
 
     Route::controller(NewsController::class)->group(function () {
         Route::get('/news', 'index');
-        Route::get('/news/search', 'searchAboutNews');
         Route::get('/news/create', 'create');
         Route::post('/news/store', 'store');
         Route::get('/news/{id}', 'show');

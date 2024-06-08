@@ -132,8 +132,8 @@ class NewsController extends Controller{
             ],
             #errors
             [
-                'image.image' => "The file field must be an image.",
-                'image.mimes' => "The file field must be an image with extension jpeg, jpg, png, jfif, or svg.",
+                'image.image' => "The image field must be an image.",
+                'image.mimes' => "The image field must be an image with extension jpeg, jpg, png, jfif, or svg.",
             ]);
 
             if ($data->fails()) {
@@ -143,15 +143,13 @@ class NewsController extends Controller{
                 ]);
             }
 
-            $validatedData = $data->validated();
-
             if($news->title != $request->title || $news->content != $request->content){
                 $news->updated_at = now();
             }
 
             $updateData = [
-                'title' => $validatedData['title'],
-                'content' => $validatedData['content'],
+                'title' => $data['title'],
+                'content' => $data['content'],
             ];
 
             if ($request->hasfile('image')) {
@@ -173,7 +171,7 @@ class NewsController extends Controller{
             return response()->json([
                 'status' => 201,
                 'message' => "News updated successfully.",
-                'news-id' => $id
+                'id' => $id
             ]);
         } else {
             // return view('errors.error404');

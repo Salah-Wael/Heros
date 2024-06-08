@@ -1,0 +1,812 @@
+{
+	"info": {
+		"_postman_id": "975a4b6b-9b1b-4c88-8dae-156e69065047",
+		"name": "Heros",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26948262"
+	},
+	"item": [
+		{
+			"name": "News",
+			"item": [
+				{
+					"name": "show all news",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 3|Mvd5QbUKqffKBjSVfxjtDPKSdWXv51n13LLSONbO0f146f37",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/news",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search news",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 13|IK6Hw7PjQsbS31Z8ehErJaK6a90OOENYzq9OJKOH21fbf3de",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "search",
+								"value": "kamel",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/news/search?search=kamel",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "kamel"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show news",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 13|IK6Hw7PjQsbS31Z8ehErJaK6a90OOENYzq9OJKOH21fbf3de",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/news/77",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"77"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store news",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 13|IK6Hw7PjQsbS31Z8ehErJaK6a90OOENYzq9OJKOH21fbf3de",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "title",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "contetn",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "ssssssss",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "aaaaaaa",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Pictures/اللاب/IMG_6292.PNG"
+								},
+								{
+									"key": "tags[0]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "tags[1]",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/news/store?title=smsm&content=nmnm&image=smsm.png",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"store"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "smsm"
+								},
+								{
+									"key": "content",
+									"value": "nmnm"
+								},
+								{
+									"key": "image",
+									"value": "smsm.png"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit news",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 13|IK6Hw7PjQsbS31Z8ehErJaK6a90OOENYzq9OJKOH21fbf3de",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/news/77/edit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"77",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update news",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"salah\",\r\n    \"content\":\"El-Din wael\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/news/77",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"77"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete news",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 13|IK6Hw7PjQsbS31Z8ehErJaK6a90OOENYzq9OJKOH21fbf3de",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/news/77/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"news",
+								"77",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Show Register Hero Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/register-hero",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register-hero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Hero",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "sasa.wael2020@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "01155800086s",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Salah",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Wael",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "01155800086s",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "image[0]",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "checkbox",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "1.7",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "66",
+									"type": "text"
+								},
+								{
+									"key": "origin_country",
+									"value": "Egypt",
+									"type": "text"
+								},
+								{
+									"key": "play_country",
+									"value": "Egypt",
+									"type": "text"
+								},
+								{
+									"key": "sport",
+									"value": "Diving",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2002-08-02",
+									"type": "text"
+								},
+								{
+									"key": "shortName",
+									"value": "bbb",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/hero/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"hero",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Register User Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "sasa.wael@gmaill.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "01155800086s",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Salah",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Wael",
+									"type": "text"
+								},
+								{
+									"key": "fullName",
+									"value": "Salah Wael",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password_confirmation",
+									"value": "01155800086s",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "image[0]",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "checkbox",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "origin_country",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "play_country",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "sport",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "birthDate",
+									"value": "2002-08-02",
+									"type": "text"
+								},
+								{
+									"key": "shortName",
+									"value": "bbb",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "salahELDin.wael@admin.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show forgot-password page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/forgot-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show forgot-password page Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/forgot-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Controller",
+			"item": [
+				{
+					"name": "show heros requests",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 12|WNv6wR2eG5FaV2CqYovSfqi4MMt8ForUkCS9vFpKee0a82e9",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/heros_request",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"heros_request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show archived heros requests",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 12|WNv6wR2eG5FaV2CqYovSfqi4MMt8ForUkCS9vFpKee0a82e9",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/heros_request/archived",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"heros_request",
+								"archived"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send hero request to archive",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 13|IK6Hw7PjQsbS31Z8ehErJaK6a90OOENYzq9OJKOH21fbf3de",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/heros_request/23/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"heros_request",
+								"23",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete hero request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 13|IK6Hw7PjQsbS31Z8ehErJaK6a90OOENYzq9OJKOH21fbf3de",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/heros_request/17/force_delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"heros_request",
+								"17",
+								"force_delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unarchive hero request (send to heros requests)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Bearer 13|IK6Hw7PjQsbS31Z8ehErJaK6a90OOENYzq9OJKOH21fbf3de",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/heros_request/23/unArchived",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"heros_request",
+								"23",
+								"unArchived"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accept hero request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}

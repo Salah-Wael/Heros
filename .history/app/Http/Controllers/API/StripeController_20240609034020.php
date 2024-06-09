@@ -88,10 +88,13 @@ class StripeController extends Controller
                 'lastName',
                 'fullName',
                 'shortName',
+                'height',
+                'weight',
                 'sport',
                 'origin_country',
                 'play_country',
                 'birthDate',
+                'gender',
                 'auth_id',
             ];
 
@@ -119,7 +122,7 @@ class StripeController extends Controller
             }
 
             // Get the results
-            $hero = $query->with('accounts')->get();
+            $hero = $query->with('account')->get();
 
             // Return the results (or you can return a view, JSON, etc.)
             return response()->json($hero);

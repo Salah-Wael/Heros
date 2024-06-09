@@ -92,6 +92,7 @@ class StripeController extends Controller
                 'origin_country',
                 'play_country',
                 'birthDate',
+                'gender',
                 'auth_id',
             ];
 

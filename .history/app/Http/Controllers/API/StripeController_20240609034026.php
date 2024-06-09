@@ -88,10 +88,13 @@ class StripeController extends Controller
                 'lastName',
                 'fullName',
                 'shortName',
+                'height',
+                'weight',
                 'sport',
                 'origin_country',
                 'play_country',
                 'birthDate',
+                'gender',
                 'auth_id',
             ];
 

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Hero;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Hero;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -94,15 +93,15 @@ class HeroController extends Controller
             $updateData = [
                 'firstName' => $validatedData['firstName'],
                 'lastName'=> $validatedData['lastName'],
-                'shortName'=> $validatedData['shortName'],
-                'height'=> $validatedData['height'],
-                'weight'=> $validatedData['weight'],
-                'origin_country'=> $validatedData['origin_country'],
-                'play_country'=> $validatedData['play_country'],
-                'sport'=> $validatedData['sport'],
-                'password'=> $validatedData['password'],
-                'birthDate'=> $validatedData['birthDate'],
-                'gender'=> $validatedData['gender'],
+                'shortName'=> $validatedData['title'],
+                'height'=> $validatedData['title'],
+                'weight'=> $validatedData['title'],
+                'origin_country'=> $validatedData['title'],
+                'play_country'=> $validatedData['title'],
+                'sport'=> $validatedData['title'],
+                'password'=> $validatedData['title'],
+                'birthDate'=> $validatedData['title'],
+                'gender'=> $validatedData['title'],
             ];
 
             DB::table('heros')->where('id', $id)->update($updateData);
@@ -139,7 +138,7 @@ class HeroController extends Controller
                 'play_country',
                 'birthDate',
                 'gender',
-                'auth_id',
+                'auth_id'
             ];
 
             // Initialize the query
@@ -168,7 +167,9 @@ class HeroController extends Controller
             // Get the results
             $hero = $query->with('images')->get();
 
+            // Return the results (or you can return a view, JSON, etc.)
             return response()->json($hero);
+            // return view('hero.index', compact('hero'));
         }
 
         // If no search parameters are provided, return an empty result or a message

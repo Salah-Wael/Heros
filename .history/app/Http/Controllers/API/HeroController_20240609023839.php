@@ -2,82 +2,66 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Bank;
-use App\Models\Hero;
-use Stripe\StripeClient;
 use Illuminate\Http\Request;
+use App\Models\Hero;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 
-class StripeController extends Controller
+class HeroController extends Controller
 {
-    public $stripe;
-    public function __construct()
-    {
-        $this->stripe = new StripeClient(
-            config('stripe.api_key.secret')
-        );
-    }
-    public function stripe()
-    {
-        $currencies = Bank::find(2)->currencies;
-        // return view('support', compact('currencies'));
+    // public function __construct(){
+    //     $this->middleware('auth');
+    // }
+    public function heroHome() {
+
+        // return view('hero.home');
         return response()->json([
             'status' => 200,
-            'currencies' => $currencies,
         ]);
+
     }
 
-    public function pay(Request $request)
-    {
-        $data = Validator::make($request->all(), [
-            'currency' => ['required'],
-            'support' => ['required', 'numeric', 'min:50', 'digits_between:2,7'],
-        ]);
+    public function heroProfile($id){
+        
+        $hero = Hero::with('images')->find($id);
 
-        if ($data->fails()) {
-            return response()->json($data->errors()->toJson(), 400);
+        // Check if the hero exists
+        if (!$hero) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Hero not found',
+            ], 404);
         }
 
-        // $validatedData = $data->validated();
-
-        $id = $this->stripe->products->create([
-            'name' => 'Support',
-        ])->id;
-
-        $price = $this->stripe->prices->create([
-            'currency' => $request->currency,
-            'unit_amount' => 100 * $request->support,
-            'product' => $id,
-        ])->id;
-
-        $session = $this->stripe->checkout->sessions->create([
-            'line_items' => [
-                [
-                    // 'images' => '',
-                    'quantity' => 1,
-                    'price' => $price,
-
-                ],
-            ],
-
-            'mode' => 'payment',
-            // # These placeholder URLs will be replaced in a following step.
-            'success_url' => 'http://127.0.0.1:8000/api/success',
-            'cancel_url' => 'https://example.com/cancel',
-        ]);
-
-        return redirect($session->url);
-    }
-    public function success(){
-        // return redirect('support')->with('success', 'You have supported the hero successfully');
+        // Return a JSON response with the status and hero data
         return response()->json([
             'status' => 200,
-            'success' => "You have supported the Hero successfully, Thanks to use Heros",
+            'hero' => $hero,
         ]);
     }
+    public  function editHeroProfile($id) {
+        $hero = Hero::find($id);
+        $auth_id = $hero->auth_id;
+        if(auth()->user()->role == 'hero' && auth()->user()->id == $auth_id){
 
-    public function searchAboutHeroToSupport(Request $request){
+            $hero = Hero::with('images')->where('id',$id)->first();
+            // return view('hero.profile-edit');
+            return response()->json([
+                'status' => 200,
+                'hero' => $hero,
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'message' => "Sorry this isn't your profile page to edit it!",
+            ]);
+        }
+    }
+
+    public function updateHeroProfile(Request $request, $id){
+        
+    }
+
+    public function searchAboutHeroProfile(Request $request){
         if ($request->has('search')) {
             $search = $request->get('search');
 
@@ -88,11 +72,14 @@ class StripeController extends Controller
                 'lastName',
                 'fullName',
                 'shortName',
+                'height',
+                'weight',
                 'sport',
                 'origin_country',
                 'play_country',
                 'birthDate',
-                'auth_id',
+                'gender',
+                'auth_id'
             ];
 
             // Initialize the query
@@ -119,7 +106,7 @@ class StripeController extends Controller
             }
 
             // Get the results
-            $hero = $query->with('accounts')->get();
+            $hero = $query->with('images')->get();
 
             // Return the results (or you can return a view, JSON, etc.)
             return response()->json($hero);
@@ -129,5 +116,4 @@ class StripeController extends Controller
         // If no search parameters are provided, return an empty result or a message
         return response()->json(['message' => 'No search parameters provided'], 400);
     }
-    }
-
+}

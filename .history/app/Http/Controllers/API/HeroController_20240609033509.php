@@ -120,7 +120,6 @@ class HeroController extends Controller
         }
     
     }
-
     public function searchAboutHeroProfile(Request $request){
         if ($request->has('search')) {
             $search = $request->get('search');
@@ -139,7 +138,7 @@ class HeroController extends Controller
                 'play_country',
                 'birthDate',
                 'gender',
-                'auth_id',
+                'auth_id'
             ];
 
             // Initialize the query
@@ -168,7 +167,9 @@ class HeroController extends Controller
             // Get the results
             $hero = $query->with('images')->get();
 
+            // Return the results (or you can return a view, JSON, etc.)
             return response()->json($hero);
+            // return view('hero.index', compact('hero'));
         }
 
         // If no search parameters are provided, return an empty result or a message

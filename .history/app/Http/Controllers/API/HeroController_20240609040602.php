@@ -168,6 +168,7 @@ class HeroController extends Controller
             // Get the results
             $hero = $query->with('images')->get();
 
+            // Return the results (or you can return a view, JSON, etc.)
             return response()->json($hero);
         }
 

@@ -58,8 +58,7 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('/hero', 'heroHome');
         Route::get('/search-hero-profile', 'searchAboutHeroProfile');
         Route::get('/profile/{id}', 'heroProfile');
-        Route::put('/profile/{id}', 'updateHeroProfile');
-
+        
         Route::get('/profile/{id}/edit', 'editHeroProfile');
     });
 
@@ -76,7 +75,6 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('support', 'stripe');
         Route::post('support', 'pay');
         Route::get('/success', 'success');
-        Route::get('/search-hero-support', 'searchAboutHeroToSupport');
     });
 
     Route::controller(DataSetController::class)->group(function () {

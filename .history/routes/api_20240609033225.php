@@ -76,7 +76,7 @@ Route::group([ 'middleware' => ['auth:sanctum'] ] ,function(){
         Route::get('support', 'stripe');
         Route::post('support', 'pay');
         Route::get('/success', 'success');
-        Route::get('/search-hero-support', 'searchAboutHeroToSupport');
+        Route::get('/search-hero-support', 'searchAboutHeroProfile');
     });
 
     Route::controller(DataSetController::class)->group(function () {

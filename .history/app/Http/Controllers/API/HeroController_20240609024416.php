@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Hero;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Hero;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,22 +61,19 @@ class HeroController extends Controller
     public function updateHeroProfile(Request $request, $id){
         $hero = Hero::find($id);
 
-        if ((auth()->user()->role == 'hero' && auth()->user()->id == $hero->auth_id)) {
+        if ((auth()->user()->role == 'hero' && auth()->user()->id == $news->user_id)) {
             $data = validator::make(
                 $request->all(),
                 [
-                    'firstName' => ['required', 'min:2', 'max:50'],
-                    'lastName' => ['required', 'min:2', 'max:50'],
-                    'shortName' => ['required', 'max:20'],
-                    'height' => ['required', 'numeric', 'min:0.5', 'max:2.50'],
-                    'weight' => ['required', 'numeric', 'min:10'],
-                    'origin_country' => ['required'],
-                    'play_country' => ['required'],
-                    'sport' => ['required'],
-                    'password' => ['required', 'min:6', 'confirmed'],
-                    'birthDate' => ['required', 'date'],
-                    'gender' => ['required'],
+                    'title' => 'required|string',
+                    'content' => 'required|string',
+                    'image' => 'image|mimes:jpeg,jpg,png,jfif,svg|max:2048',
                 ],
+                #errors
+                [
+                    'image.image' => "The file field must be an image.",
+                    'image.mimes' => "The file field must be an image with extension jpeg, jpg, png, jfif, or svg.",
+                ]
             );
 
             if ($data->fails()) {
@@ -89,28 +85,35 @@ class HeroController extends Controller
 
             $validatedData = $data->validated();
 
-                $hero->updated_at = now();
+            if ($news->title != $request->title || $news->content != $request->content) {
+                $news->updated_at = now();
+            }
 
             $updateData = [
-                'firstName' => $validatedData['firstName'],
-                'lastName'=> $validatedData['lastName'],
-                'shortName'=> $validatedData['shortName'],
-                'height'=> $validatedData['height'],
-                'weight'=> $validatedData['weight'],
-                'origin_country'=> $validatedData['origin_country'],
-                'play_country'=> $validatedData['play_country'],
-                'sport'=> $validatedData['sport'],
-                'password'=> $validatedData['password'],
-                'birthDate'=> $validatedData['birthDate'],
-                'gender'=> $validatedData['gender'],
+                'title' => $validatedData['title'],
+                'content' => $validatedData['content'],
             ];
 
-            DB::table('heros')->where('id', $id)->update($updateData);
+            if ($request->hasfile('image')) {
+                File::delete(public_path('assets/images/news/') . $news->image);
+                $image = $request->file('image');
+                $imageName = uniqid() . $image->getClientOriginalName();
+                $image->move(public_path('assets/images/news'), $imageName);
+                $updateData['image'] = $imageName;
+                $updateData['updated_at'] = now();
+            }
+            DB::table('news')->where('id', $id)->update($updateData);
 
+            $tags = $request->get('tags');
+            if ($tags) {
+                $news->tags()->attach($tags);
+            }
+
+            // return redirect()->route('news.show', $id)->with('success', 'News updated successfully.');
             return response()->json([
                 'status' => 201,
-                'message' => "Your Profile updated successfully.",
-                'hero_id' => $id
+                'message' => "News updated successfully.",
+                'news-id' => $id
             ]);
         } else {
             // return view('errors.error404');
@@ -139,7 +142,7 @@ class HeroController extends Controller
                 'play_country',
                 'birthDate',
                 'gender',
-                'auth_id',
+                'auth_id'
             ];
 
             // Initialize the query
@@ -168,7 +171,9 @@ class HeroController extends Controller
             // Get the results
             $hero = $query->with('images')->get();
 
+            // Return the results (or you can return a view, JSON, etc.)
             return response()->json($hero);
+            // return view('hero.index', compact('hero'));
         }
 
         // If no search parameters are provided, return an empty result or a message

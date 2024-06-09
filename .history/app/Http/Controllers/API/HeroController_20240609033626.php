@@ -166,9 +166,11 @@ class HeroController extends Controller
             }
 
             // Get the results
-            $hero = $query->with('images')->get();
+            $hero = $query->with('accounts')->get();
 
+            // Return the results (or you can return a view, JSON, etc.)
             return response()->json($hero);
+            // return view('hero.index', compact('hero'));
         }
 
         // If no search parameters are provided, return an empty result or a message

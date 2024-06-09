@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Bank;
-use App\Models\Hero;
 use Stripe\StripeClient;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 
 class StripeController extends Controller
 {
@@ -77,7 +76,7 @@ class StripeController extends Controller
         ]);
     }
 
-    public function searchAboutHeroToSupport(Request $request){
+    public function searchAboutHeroToSupport(){
         if ($request->has('search')) {
             $search = $request->get('search');
 
@@ -88,10 +87,13 @@ class StripeController extends Controller
                 'lastName',
                 'fullName',
                 'shortName',
+                'height',
+                'weight',
                 'sport',
                 'origin_country',
                 'play_country',
                 'birthDate',
+                'gender',
                 'auth_id',
             ];
 
@@ -119,7 +121,7 @@ class StripeController extends Controller
             }
 
             // Get the results
-            $hero = $query->with('accounts')->get();
+            $hero = $query->with('images')->get();
 
             // Return the results (or you can return a view, JSON, etc.)
             return response()->json($hero);
@@ -130,4 +132,4 @@ class StripeController extends Controller
         return response()->json(['message' => 'No search parameters provided'], 400);
     }
     }
-
+}

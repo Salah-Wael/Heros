@@ -303,6 +303,7 @@ class NewsController extends Controller{
                 ]);
         }
 
+        
     }
 
     public  function delete($id) {

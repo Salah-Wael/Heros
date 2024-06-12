@@ -303,6 +303,11 @@ class NewsController extends Controller{
                 ]);
         }
 
+        // return response()->json([
+        //     'status' => 200,
+        //     'news' => $news,
+        //     'relatedNews' => $relatedNews,
+        // ]);
     }
 
     public  function delete($id) {

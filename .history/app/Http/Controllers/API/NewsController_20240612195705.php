@@ -188,12 +188,11 @@ class NewsController extends Controller{
                 'message' => "News updated successfully.",
                 'news-id' => $id
             ]);
-            } else {
-                // return view('errors.error404');
-                return response()->json([
-                    'status' => 404,
-                ]);
-            }
+        } else {
+            // return view('errors.error404');
+            return response()->json([
+                'status' => 404,
+            ]);
         }
     }
 
@@ -303,6 +302,11 @@ class NewsController extends Controller{
                 ]);
         }
 
+        // return response()->json([
+        //     'status' => 200,
+        //     'news' => $news,
+        //     'relatedNews' => $relatedNews,
+        // ]);
     }
 
     public  function delete($id) {

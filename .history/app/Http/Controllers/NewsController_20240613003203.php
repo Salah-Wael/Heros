@@ -110,6 +110,8 @@ class NewsController extends Controller{
             DB::table('news')->where('id', $id)->update($updateData);
 
             $news->tags()->detach();
+            // Retrieve existing tags from the $news model
+            // $existingTags = $news->tags()->pluck('tags.id')->toArray();
 
             // Retrieve new tags from the request
             $newTags = $request->get('tags', []);

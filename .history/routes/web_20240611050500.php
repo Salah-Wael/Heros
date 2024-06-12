@@ -27,9 +27,7 @@ use App\Http\Controllers\SocialiteController;
 
 Route::controller(AuthController::class)->group(function(){
     Route::get('/login','showLogin')->name('login');
-    Route::get('/','showLogin');
     Route::post('/login','login');
-
 
     Route::get('/register', 'showRegister');
     Route::post('/register', 'register');
@@ -71,9 +69,11 @@ Route::controller(HeroController::class)->group(function(){
 });
 
 Route::get('/dashboard',function(){
-return view ('home');
 })->name('user');
 
+Route::get('/',function(){
+return view ('home');
+});
 
 Route::get('about',function(){
     return  view ('about');

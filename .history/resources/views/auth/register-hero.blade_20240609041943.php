@@ -172,7 +172,7 @@ Sign Up as Hero
         <label for="images1" class="custom-file-upload">
             <span>Send 4 Images for yourself</span>
         </label> --}}
-        <input type="file" name="images[]" id="images1" accept=".jpeg, .jpg, .png, .jfif, .svg">
+        {{-- <input type="file" name="images[]" id="images1" accept=".jpeg, .jpg, .png, .jfif, .svg">
         </div>
 
         <div class="form-group">
@@ -193,7 +193,20 @@ Sign Up as Hero
                     {{ $error }}
                 @endforeach
             </div>
-        @endif
+        @endif --}}
+
+        <div class="form-group">
+            <label class="form-label" for="exampleInputName1">Stripe</label>
+            <input type="text" class="form-control mb-0" name='accounts[]' required id="exampleInputName1" placeholder="Last name">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="exampleInputName2">Fawaterk</label>
+            <input type="text" class="form-control mb-0" name='accounts[]' required id="exampleInputName2" placeholder="Last name">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="exampleInputName3">Paypal</label>
+            <input type="text" class="form-control mb-0" name='accounst[]'  required id="exampleInputName3" placeholder="Last name">
+        </div>
 
         <div>
         <br>

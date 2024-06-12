@@ -97,10 +97,6 @@ Route::controller(NewsController::class)->group(function(){
     Route::delete('/news/{id}/delete', 'delete')->name('news.delete');
 });
 
-// Route::get('/test', function () {
-//     return view('test.index');
-// });
-
 Route::middleware('auth')->group(function () {
     Route::get('/chat', [Index::class,'render'])->name('chat.index');
     Route::get('/chat/{query}', [Chat::class, 'render'])->name('chat');
@@ -127,7 +123,4 @@ Route::controller(StripeController::class)->group(function () {
     Route::post('support', 'pay')->name('stripe.pay');
     Route::get('/success', 'success')->name('success');
 });
-// Route::get('support',function(){
-    //     return  view ('support');
-    // })->middleware('auth')->name('support');
 

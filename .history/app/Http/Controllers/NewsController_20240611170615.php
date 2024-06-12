@@ -109,31 +109,22 @@ class NewsController extends Controller{
             }
             DB::table('news')->where('id', $id)->update($updateData);
 
-            // Retrieve existing tags from the $news model
-            $existingTags = $news->tags()->pluck('tags.id')->toArray();
-
-            // Retrieve new tags from the request
-            $newTags = $request->get('tags', []);
-            if ($newTags) {
-
-                // Merge the existing tags with the new tags
-                $allTags = array_merge($existingTags, $newTags);
-
-                // Remove duplicates
-                // $uniqueTags = array_unique($allTags);
-                $uniqueTags = array_unique(array_map('intval', $allTags));
-                // dd($uniqueTags);
-
-                // Attach the unique tags to the $news model
-                $news->tags()->sync($uniqueTags);
+            $tags = $news->tags();
+            print_r($tags);
+            dd($tags);
+            $tags = $request->get('tags');
+            if ($tags) {
+                $tags = array_unique($tags);
+                $news->tags()->attach($tags);
+                $tags = array_unique($tags);
             }
-
 
             return redirect()->route('news.show', $id)->with('success', 'News updated successfully.');
         } else {
             return view('errors.error404');
         }
     }
+
 
     public function index(Request $request){
 

@@ -27,10 +27,12 @@ use App\Http\Controllers\SocialiteController;
 
 Route::controller(AuthController::class)->group(function(){
     Route::get('/login','showLogin')->name('login');
-    Route::get('/','showLogin');
+    Route::get('/','showLogin')->name('login');
     Route::post('/login','login');
 
-
+    Route::get('/',function(){
+        return view ('home');
+    });
     Route::get('/register', 'showRegister');
     Route::post('/register', 'register');
 

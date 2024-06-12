@@ -8,7 +8,7 @@ Heros | home
 
 @section('content')
     <div class="content1">
-        smsm
+        sd
     </div>
 
 @endsection

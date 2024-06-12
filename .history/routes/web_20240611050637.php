@@ -30,7 +30,7 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/','showLogin');
     Route::post('/login','login');
 
-
+    
     Route::get('/register', 'showRegister');
     Route::post('/register', 'register');
 

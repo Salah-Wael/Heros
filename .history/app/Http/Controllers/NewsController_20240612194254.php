@@ -109,6 +109,8 @@ class NewsController extends Controller{
             }
             DB::table('news')->where('id', $id)->update($updateData);
 
+            
+
             // Retrieve existing tags from the $news model
             $existingTags = $news->tags()->pluck('tags.id')->toArray();
 
@@ -134,6 +136,7 @@ class NewsController extends Controller{
             return view('errors.error404');
         }
     }
+
 
     public function index(Request $request){
 

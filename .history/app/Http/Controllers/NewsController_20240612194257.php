@@ -135,6 +135,7 @@ class NewsController extends Controller{
         }
     }
 
+
     public function index(Request $request){
 
         if ($request->has('search')) {

@@ -7,8 +7,6 @@ Heros | home
 @endsection
 
 @section('content')
-    <div class="content1">
-        smsm
-    </div>
+    <div class="content1"><
 
 @endsection

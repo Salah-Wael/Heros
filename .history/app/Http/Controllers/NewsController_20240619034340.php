@@ -17,9 +17,9 @@ class NewsController extends Controller{
     public function __construct(){
         $this->middleware('auth'); //->except([ 'index','show']);
     }
-    
+
     public function create() {
-        
+
         if (auth()->user() &&  ((auth()->user()->role == 'admin') || (auth()->user()->role == 'hero'))) {
             $tags = Tag::all();
             return view('news.create', ['tags' => $tags]);
@@ -28,20 +28,19 @@ class NewsController extends Controller{
         }
     }
 
-    public function createImageNews($request,string $pathAfterPublic)
-    {
+    public function addImageNews(Request $request,) {
         $image = $request->file('image');
         $imageName = uniqid() . $image->getClientOriginalName();
         $noSpacesString = str_replace(' ', '', $imageName);
-        $image->move(public_path($pathAfterPublic), $noSpacesString);
-        return $noSpacesString;
+        $image->move(public_path('assets/images/news'), $noSpacesString);
+        $news->image = $noSpacesString;
     }
 
     public function store(Request $request) {
         $data= $request->validate([
                 'title' => 'required|string',
                 'content' => 'required|string',
-                'image' => 'required|image|mimes:jpeg,jpg,png,jfif,svg|max:5048'
+                'image' => 'required|image|mimes:jpeg,jpg,png,jfif,svg|max:2048'
             ],
             #errors
             [
@@ -52,7 +51,11 @@ class NewsController extends Controller{
 
         $news = new News();
 
-        $news->image = $this->createImageNews($request, 'assets/images/news');
+        // $image = $request->file('image');
+        // $imageName= uniqid().$image->getClientOriginalName();
+        // $noSpacesString = str_replace(' ', '', $imageName);
+        // $image->move(public_path('assets/images/news'), $noSpacesString);
+        // $news->image = $noSpacesString;
 
         $news->title = $data['title'];
         $news->content = $data['content'];
@@ -66,7 +69,8 @@ class NewsController extends Controller{
 
         return redirect()->route('news.index')->with('success', "News created successfully.");
     }
-    public  function edit($id){
+    public  function edit($id)
+    {
         $news = DB::table('news')->join('users', 'news.user_id', '=', 'users.id')
         ->select('news.*', 'users.role')->where('news.id', $id)->first();
         if (auth()->user() &&  (((auth()->user()->role == 'admin') && $news->role != 'hero') || ((auth()->user()->role == 'hero') && auth()->user()->id == $news->user_id))) {
@@ -76,8 +80,8 @@ class NewsController extends Controller{
             return view('errors.error404');
         }
     }
-
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         // $news = DB::table('news')->where('id', $id)->first();
         $news = News::findOrFail($id)
         ->join('users', 'news.user_id', '=', 'users.id')
@@ -106,7 +110,10 @@ class NewsController extends Controller{
 
             if ($request->hasfile('image')) {
                 File::delete(public_path('assets/images/news/') . $news->image);
-                $updateData['image'] = $this->createImageNews($request, 'assets/images/news/');
+                $image = $request->file('image');
+                $imageName = uniqid() . $image->getClientOriginalName();
+                $image->move(public_path('assets/images/news'), $imageName);
+                $updateData['image'] = $imageName;
                 $updateData['updated_at'] = now();
             }
             DB::table('news')->where('id', $id)->update($updateData);

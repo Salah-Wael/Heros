@@ -76,8 +76,8 @@ class NewsController extends Controller{
             return view('errors.error404');
         }
     }
-
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         // $news = DB::table('news')->where('id', $id)->first();
         $news = News::findOrFail($id)
         ->join('users', 'news.user_id', '=', 'users.id')

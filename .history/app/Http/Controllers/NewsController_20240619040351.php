@@ -27,8 +27,12 @@ class NewsController extends Controller{
             return view('errors.error404');
         }
     }
+    // $image = $request->file('image');
+    // $imageName= uniqid().$image->getClientOriginalName();
+    // $noSpacesString = str_replace(' ', '', $imageName);
+    // $image->move(public_path('assets/images/news'), $noSpacesString);
 
-    public function createImageNews($request,string $pathAfterPublic)
+    public function createImageNews($request, $pathAfterPublic)
     {
         $image = $request->file('image');
         $imageName = uniqid() . $image->getClientOriginalName();
@@ -66,7 +70,8 @@ class NewsController extends Controller{
 
         return redirect()->route('news.index')->with('success', "News created successfully.");
     }
-    public  function edit($id){
+    public  function edit($id)
+    {
         $news = DB::table('news')->join('users', 'news.user_id', '=', 'users.id')
         ->select('news.*', 'users.role')->where('news.id', $id)->first();
         if (auth()->user() &&  (((auth()->user()->role == 'admin') && $news->role != 'hero') || ((auth()->user()->role == 'hero') && auth()->user()->id == $news->user_id))) {
@@ -76,8 +81,8 @@ class NewsController extends Controller{
             return view('errors.error404');
         }
     }
-
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         // $news = DB::table('news')->where('id', $id)->first();
         $news = News::findOrFail($id)
         ->join('users', 'news.user_id', '=', 'users.id')
@@ -106,7 +111,10 @@ class NewsController extends Controller{
 
             if ($request->hasfile('image')) {
                 File::delete(public_path('assets/images/news/') . $news->image);
-                $updateData['image'] = $this->createImageNews($request, 'assets/images/news/');
+                // $image = $request->file('image');
+                // $imageName = uniqid() . $image->getClientOriginalName();
+                // $image->move(public_path(), $imageName);
+                $updateData['image'] = $this->createImageNews($request, 'assets/images/news');
                 $updateData['updated_at'] = now();
             }
             DB::table('news')->where('id', $id)->update($updateData);
